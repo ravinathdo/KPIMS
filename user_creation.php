@@ -131,8 +131,12 @@ VALUES ('first_name',
         'user_role',
         'status_code',
         'user_created')";
-                                setData($sql, $msgArray);
-                            
+                                $setData = setData($sql, $msgArray);
+                            if($setData > 0){
+                                
+                            }else{
+                                
+                            }
                                 
                                 
                             }
