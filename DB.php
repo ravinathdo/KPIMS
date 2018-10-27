@@ -25,8 +25,15 @@ function getDBConnection() {
 }
 
 
+/**
+ * 
+ * @param type $sql
+ * @param type $msgArray    $msgArray = array('msgsuccess' => '', 'msgerror' => '');
+ * @return type
+ */
 function setData($sql, $msgArray) {
     $conn = getDBConnection();
+    $last_id = 0;
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }

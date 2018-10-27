@@ -113,32 +113,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-md-8 ">
                             <?php
                             if (isset($_POST['btnUserCreation'])) {
-                                $pword = $_POST['empno'];
+                                $pword = $_POST['empno']; // employee number as the password 
+
                                 $sql = "INSERT INTO kpi_user
-            ('".$_POST['first_name']."',
-             '".$_POST['last_name']."',
-             '".$_POST['empno']."',
-             '".$_POST['nic']."',
-             '".$pword."',
-             `".$_POST['user_role']."`,
-             `ACTIVE`,
-             `1`)
-VALUES ('first_name',
-        'last_name',
-        'empno',
-        'nic',
-        'pword',
-        'user_role',
-        'status_code',
-        'user_created')";
+            (`first_name`,
+             `last_name`,
+             `empno`,
+             `nic`,
+             `pword`,
+             `user_role`,
+             `status_code`,
+             `user_created`)
+VALUES ('" . $_POST['first_name'] . "',
+             '" . $_POST['last_name'] . "',
+             '" . $_POST['empno'] . "',
+             '" . $_POST['nic'] . "',
+             '" . $pword . "',
+             '" . $_POST['user_role'] . "',
+             'ACTIVE',
+             '1');";
+//                                echo $sql;
+                                $msgArray = array('msgsuccess' => 'New user created successfuly', 'msgerror' => 'Invalid input or duplicate record');
                                 $setData = setData($sql, $msgArray);
-                            if($setData > 0){
-                                
-                            }else{
-                                
-                            }
-                                
-                                
+                                if ($setData > 0) {
+                                    
+                                } else {
+                                    
+                                }
                             }
                             ?>
                             <!----->
@@ -174,13 +175,13 @@ VALUES ('first_name',
                                         <div class="col-sm-10">
                                             <select name="user_role" class="form-control" required="">
                                                 <option value="">--select--</option>
-<?php
-$sql = "SELECT * FROM kpi_user_role";
-$data = getData($sql);
-foreach ($data as $value) {
-    ?>
+                                                <?php
+                                                $sql = "SELECT * FROM kpi_user_role";
+                                                $data = getData($sql);
+                                                foreach ($data as $value) {
+                                                    ?>
                                                     <option value="<?= $value['user_role'] ?>"><?= $value['description'] ?></option>
-                                                <?php } ?>
+<?php } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -199,17 +200,68 @@ foreach ($data as $value) {
                                 </form>
                             </div>
                             <!---->
-
                         </div>
                         <div class="col-md-4 "></div>
+                        <div class="clearfix"> </div>
+                        <div class="col-md-12 ">
+                            <?php
+                            $sql = " SELECT kpi_user.*,kpi_user_role.description 
+FROM kpi_user 
+INNER JOIN kpi_user_role 
+ON kpi_user_role.user_role = kpi_user.user_role  ";
+//                            echo $sql;
+                            ?>
+                            <table id="example" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>EMP No</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>NIC</th>
+                                        <th>User Role</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $resultx = getData($sql);
+                                    if ($resultx != FALSE) {
+                                        while ($row = mysqli_fetch_assoc($resultx)) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $row['empno']; ?></td>
+                                                <td><?= $row['first_name']; ?></td>
+                                                <td><?= $row['last_name']; ?></td>
+                                                <td><?= $row['nic']; ?></td>
+                                                <td><?= $row['description']; ?></td>
+                                                <td><?= $row['status_code']; ?></td>
+                                                <td><?= $row['date_created']; ?></td>
+                                                <td><a href="admin_update_user.php?id=<?= $row['id']; ?>">Update</a></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                            <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+                            <script type="text/javascript">
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+                            </script>
+                        </div>
                         <div class="clearfix"> </div>
                     </div>
                     <!---->
 
                     <!---->
-<?php
-include './_footer.php';
-?>
+                    <?php
+                    include './_footer.php';
+                    ?>
 
                 </div>
                 <div class="clearfix"> </div>

@@ -202,6 +202,7 @@ CREATE TABLE `kpi_user` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) DEFAULT NULL,
   `last_name` varchar(50) DEFAULT NULL,
+  `empno` varchar(50) DEFAULT NULL,
   `nic` varchar(12) DEFAULT NULL,
   `pword` text,
   `user_role` varchar(20) DEFAULT NULL,
@@ -211,9 +212,11 @@ CREATE TABLE `kpi_user` (
   `user_updated` int(5) DEFAULT '0',
   `date_updated` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_user` */
+
+insert  into `kpi_user`(`id`,`first_name`,`last_name`,`empno`,`nic`,`pword`,`user_role`,`status_code`,`user_created`,`date_created`,`user_updated`,`date_updated`) values (1,'Admin','Fernando','1343','863512542V','1343','ENGINEER','ACTIVE',1,'2018-10-27 07:35:42',0,NULL),(2,'Admin','Fernando','13434','863512552V','13434','ENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL);
 
 /*Table structure for table `kpi_user_role` */
 
@@ -226,6 +229,8 @@ CREATE TABLE `kpi_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_user_role` */
+
+insert  into `kpi_user_role`(`user_role`,`description`) values ('ENGINEER','Engineer'),('JENGINEER','junior Engineer'),('PM','Project Manager'),('SMANAGER','Senior Manager'),('TEAMLEAD','Team Lead Senior Engineer');
 
 /*Table structure for table `kpi_week_plan` */
 
