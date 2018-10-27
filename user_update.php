@@ -48,7 +48,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <!----->
 
-      
+       
         <!--skycons-icons-->
         <script src="js/skycons.js"></script>
         <!--//skycons-icons-->
@@ -56,7 +56,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <body>
         <div id="wrapper">
 
-            <!----->
+           <!----->
             <?php
             include './_tree.php';
             ?>
@@ -75,97 +75,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!--//banner-->
                     <!--content-->
                     <div class="content-top">
-                        <div class="col-md-8 ">
-                            <?php
-                            if (isset($_POST['btnUserCreation'])) {
-                                $pword = $_POST['empno']; // employee number as the password 
-
-                                $sql = "INSERT INTO kpi_user
-            (`first_name`,
-             `last_name`,
-             `empno`,
-             `nic`,
-             `pword`,
-             `user_role`,
-             `status_code`,
-             `user_created`)
-VALUES ('" . $_POST['first_name'] . "',
-             '" . $_POST['last_name'] . "',
-             '" . $_POST['empno'] . "',
-             '" . $_POST['nic'] . "',
-             '" . $pword . "',
-             '" . $_POST['user_role'] . "',
-             'ACTIVE',
-             '1');";
-//                                echo $sql;
-                                $msgArray = array('msgsuccess' => 'New user created successfuly', 'msgerror' => 'Invalid input or duplicate record');
-                                $setData = setData($sql, $msgArray);
-                                if ($setData > 0) {
-                                } else {
-                                }
-                            }
-                            ?>
-                            <!----->
-                            <div class="grid-form1">
-                                <h3 id="forms-horizontal">User Creation <span class="mando-msg">* fields are mandatory</span></h3>
-                                <form class="form-horizontal" action="user_creation.php" method="post">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label hor-form">Employee Number <span class="mando-msg">*</span></label>
-                                        <div class="col-sm-10">
-                                            <input type="text" required="" name="empno" class="form-control" id="inputEmail3" placeholder="Employee Number">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label hor-form">First Name <span class="mando-msg">*</span></label>
-                                        <div class="col-sm-10">
-                                            <input type="text"  required=""  name="first_name" class="form-control" id="inputEmail3" placeholder="First Name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label hor-form">Last Name</label>
-                                        <div class="col-sm-10">
-                                            <input type="text"    name="last_name" class="form-control" id="inputEmail3" placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label hor-form">NIC <span class="mando-msg">*</span></label>
-                                        <div class="col-sm-10">
-                                            <input type="text"  required=""  name="nic" class="form-control" id="inputEmail3" placeholder="NIC">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label hor-form">User Role <span class="mando-msg">*</span></label>
-                                        <div class="col-sm-10">
-                                            <select name="user_role" class="form-control" required="">
-                                                <option value="">--select--</option>
-                                                <?php
-                                                $sql = "SELECT * FROM kpi_user_role";
-                                                $data = getData($sql);
-                                                foreach ($data as $value) {
-                                                    ?>
-                                                    <option value="<?= $value['user_role'] ?>"><?= $value['description'] ?></option>
-<?php } ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label hor-form">Password</label>
-                                        <div class="col-sm-10">
-                                            Default password will be same as the Employee Number 
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" name="btnUserCreation" class="btn btn-default">Create User</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!---->
-                        </div>
-                        <div class="col-md-4 "></div>
-                        <div class="clearfix"> </div>
                         <div class="col-md-12 ">
                             <?php
                             $sql = " SELECT kpi_user.*,kpi_user_role.description 

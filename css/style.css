@@ -16,7 +16,7 @@ p {margin: 0;}
 
 html, body{
   	font-family:'Montserrat-Regular';
-    font-size: 100%;
+    /*font-size: 100%;*/
   	background:#F3F3F4;
   	overflow-x: hidden;
 }

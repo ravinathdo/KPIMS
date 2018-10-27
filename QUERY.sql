@@ -1,0 +1,1 @@
+SELECT * FROM kpi_user WHERE empno = '1343' AND pword = '' AND status_code = 'ACTIVE'

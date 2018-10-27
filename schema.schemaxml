@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">kpimsdb</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="kpi_week_plan" view="colnames">
+<left>297</left>
+<top>77</top>
+<width>156</width>
+<height>277</height>
+<sql_create_table>CREATE TABLE `kpi_week_plan` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `plan_date` varchar(20) DEFAULT NULL,
+  `task` varchar(100) DEFAULT NULL,
+  `estimated_duration` varchar(50) DEFAULT NULL,
+  `actual` varchar(100) DEFAULT NULL,
+  `actual_duration` varchar(50) DEFAULT NULL,
+  `remark` varchar(50) DEFAULT NULL,
+  `status_code` varchar(20) DEFAULT NULL,
+  `user_created` int(5) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `review_user` int(5) DEFAULT '0',
+  `review_date` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `NewIndex1` (`plan_date`),
+  KEY `FK_kpi_week_plan_user` (`user_created`),
+  CONSTRAINT `FK_kpi_week_plan_user` FOREIGN KEY (`user_created`) REFERENCES `kpi_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kpi_week_plan_actual" view="colnames">
+<left>528</left>
+<top>133</top>
+<width>134</width>
+<height>243</height>
+<sql_create_table>CREATE TABLE `kpi_week_plan_actual` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `plan_id` int(5) DEFAULT NULL,
+  `actual` varchar(100) DEFAULT NULL,
+  `actual_duration` varchar(50) DEFAULT NULL,
+  `remark` varchar(50) DEFAULT NULL,
+  `status_code` varchar(20) DEFAULT NULL,
+  `user_created` int(5) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `review_user` int(5) DEFAULT '0',
+  `review_date` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `NewIndex1` (`plan_id`),
+  CONSTRAINT `FK_kpi_week_plan_actual` FOREIGN KEY (`plan_id`) REFERENCES `kpi_week_plan` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kpi_user" view="colnames">
+<left>106</left>
+<top>72</top>
+<width>124</width>
+<height>277</height>
+<sql_create_table>CREATE TABLE `kpi_user` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `empno` varchar(50) DEFAULT NULL,
+  `nic` varchar(12) DEFAULT NULL,
+  `pword` text,
+  `user_role` varchar(20) DEFAULT NULL,
+  `status_code` varchar(20) DEFAULT NULL,
+  `user_created` int(5) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_updated` int(5) DEFAULT '0',
+  `date_updated` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

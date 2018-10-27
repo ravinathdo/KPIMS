@@ -51,20 +51,16 @@ function setData($sql, $msgArray) {
 function getData($sql) {
     // Create connection
     $conn = getDBConnection();
-
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
     $result = mysqli_query($conn, $sql);
-
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         return $result;
     } else {
         return FALSE;
     }
-
     mysqli_close($conn);
 }
 
