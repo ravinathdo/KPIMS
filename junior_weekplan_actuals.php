@@ -140,7 +140,7 @@ VALUES ('" . $_POST['weekplan_id'] . "',
         '" . $_POST['actual'] . "',
         '$actual_duration',
         '" . $_POST['remark'] . "',
-        '".$_SESSION['userbean']['id']."',
+        '" . $_SESSION['userbean']['id'] . "',
         'DONE');";
                                     $msgArray = array('msgsuccess' => 'Actual created successfuly', 'msgerror' => 'Invalid input or duplicate record');
                                     setData($sql, $msgArray);
@@ -186,7 +186,21 @@ VALUES ('" . $_POST['weekplan_id'] . "',
                         <div class="clearfix"> </div>
 
                         <div class="col-md-12 ">
+                            <?php
+                            if (isset($_POST['approveBtn'])) {
+                                date_default_timezone_set("Asia/Colombo");
+                                $today = date("Y-m-d h:i:sa");
 
+                                $sql = "UPDATE kpi_week_plan_actual
+SET 
+  `status_code` = 'REVIEW',
+  `category` = '" . $_POST['category'] . "',
+  `review_user` = '" . $_SESSION['userbean']['id'] . "',
+  `review_date` = '$today'
+WHERE `id` = '" . $_POST['actual_id'] . "';";
+                                setUpdate($sql, TRUE);
+                            }
+                            ?>
                             <table class="table-bordered" style="width: 100%">
                                 <thead>
                                     <tr>
@@ -211,29 +225,43 @@ VALUES ('" . $_POST['weekplan_id'] . "',
                                                 <td><?= $row['status_code']; ?></td>
                                                 <td><?= $row['remark']; ?></td>
                                                 <td>
-                                                    <?php if(getLevelAccessible(getLevelFromUserID($row['user_created']), $_SESSION['userbean']['access_level'])){
-     echo 'Access Granted';
-                                                    }?>
-                                                    
+                                                    <?php
+                                                    if($row['status_code'] != 'REVIEW')
+                                                    if ($_SESSION['userbean']['user_role'] == 'PM') {
+                                                        ?>
+                                                        <form action="junior_weekplan_actuals.php?weekplan_id=<?= $_GET['weekplan_id'] ?>" method="post">
+                                                            <input id="actual" name="actual_id" type="hidden" class="form-control" value="<?= $row['id']; ?>">
+                                                            <select name="category">
+                                                                <option value="SLA">SLA</option>
+                                                                <option value="PAYBAL">PAYBAL</option>
+                                                            </select>
+                                                            
+                                                            <input type="submit" name="approveBtn" name="Approve"/>
+                                                        </form>
+                                                        <?php
+                                                    }
+                                                    ?>
+
                                                 </td>
                                             </tr>
-                                    <?php }
+                                            <?php
                                         }
-                                        ?>
+                                    }
+                                    ?>
 
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
 
 
-                                
-                            </div>
+
                         </div>
-                        <!---->
+                    </div>
+                    <!---->
 
-                        <!---->
-                        <?php
-                        include './_footer.php';
-                        ?>
+                    <!---->
+                    <?php
+                    include './_footer.php';
+                    ?>
 
                 </div>
                 <div class="clearfix"> </div>

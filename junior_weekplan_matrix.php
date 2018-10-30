@@ -80,12 +80,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
              `estimated_duration`,
              `remark`,
              `status_code`,
+             `assign_to`,
              `user_created`)
 VALUES ('" . $_POST['plan_date'] . "',
         '" . $_POST['task'] . "',
         '$estimated_duration',
         '" . $_POST['remark'] . "',
         'ACTIVE',
+        '" . $_SESSION['userbean']['id'] . "',
         '" . $_SESSION['userbean']['id'] . "');";
 //                                echo $sql;
                                 $msgArray = array('msgsuccess' => 'New skill created', 'msgerror' => 'Invalid input or duplicate entry');

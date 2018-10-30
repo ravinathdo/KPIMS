@@ -16,7 +16,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="inbox.html" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Inbox</span> </a>
+                                    <a href="junior_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Weekly Plan</span> </a>
                                 </li>
 
                                 <li>

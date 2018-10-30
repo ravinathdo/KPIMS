@@ -64,6 +64,7 @@ function getData($sql) {
     mysqli_close($conn);
 }
 
+
 function setUpdate($sql, $MSG) {
     $flag = TRUE;
     $conn = getDBConnection();
