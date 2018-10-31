@@ -104,7 +104,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = " SELECT * FROM kpi_week_plan WHERE plan_date >= '" . $_POST['from_date'] . "' AND plan_date <= '" . $_POST['to_date'] . "' ";
+//                                        if != PM and HIT others should see there own
+                                        if ($_SESSION['userbean']['user_role'] == 'PM' || $_SESSION['userbean']['user_role'] == 'HIT') {
+                                            $sql = " SELECT * FROM kpi_week_plan WHERE plan_date >= '" . $_POST['from_date'] . "' AND plan_date <= '" . $_POST['to_date'] . "' ";
+                                        } else {
+                                            $sql = " SELECT * FROM kpi_week_plan WHERE plan_date >= '" . $_POST['from_date'] . "' AND plan_date <= '" . $_POST['to_date'] . "' AND assign_to = '".$_SESSION['userbean']['id']."' ";
+                                        }
 //                                        echo $sql;
                                         $resultx = getData($sql);
                                         if ($resultx != FALSE) {
@@ -118,21 +123,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                     <td><?= $row['status_code']; ?></td>
                                                     <td><?php if ($row['status_code'] == 'PENDING') { ?> 
                                                             <a href="pm_weekplan_assign.php?weekplan_id=<?= $row['id']; ?>">Assign Now</a> 
-                                                        <?php } else {
-                                                            ?>
+            <?php } else {
+                ?>
                                                             <a href="junior_weekplan_actuals.php?weekplan_id=<?= $row['id']; ?>">Actuals</a> <?php }
-                                                        ?>
+            ?>
 
                                                     </td>
                                                 </tr>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
+            <?php
+        }
+    }
+    ?>
                                     </tbody>
                                 </table>
-                            <?php }
-                            ?>
+                                    <?php }
+                                    ?>
 
 
                             <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
@@ -150,9 +155,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!---->
 
                     <!---->
-                    <?php
-                    include './_footer.php';
-                    ?>
+<?php
+include './_footer.php';
+?>
 
                 </div>
                 <div class="clearfix"> </div>
