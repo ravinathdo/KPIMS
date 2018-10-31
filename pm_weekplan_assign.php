@@ -5,7 +5,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
     <?php include_once './DB.php'; ?>
@@ -28,22 +28,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script src="js/custom.js"></script>
         <script src="js/screenfull.js"></script>
         <script>
-$(function () {
-$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+            $(function () {
+                $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-if (!screenfull.enabled) {
-return false;
-}
-
-
-
-$('#toggle').click(function () {
-screenfull.toggle($('#container')[0]);
-});
+                if (!screenfull.enabled) {
+                    return false;
+                }
 
 
 
-});
+                $('#toggle').click(function () {
+                    screenfull.toggle($('#container')[0]);
+                });
+
+
+
+            });
         </script>
 
         <!----->
@@ -52,39 +52,39 @@ screenfull.toggle($('#container')[0]);
         <script src="js/pie-chart.js" type="text/javascript"></script>
         <script type="text/javascript">
 
-       $(document).ready(function () {
-           $('#demo-pie-1').pieChart({
-               barColor: '#3bb2d0',
-               trackColor: '#eee',
-               lineCap: 'round',
-               lineWidth: 8,
-               onStep: function (from, to, percent) {
-                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-               }
-           });
+            $(document).ready(function () {
+                $('#demo-pie-1').pieChart({
+                    barColor: '#3bb2d0',
+                    trackColor: '#eee',
+                    lineCap: 'round',
+                    lineWidth: 8,
+                    onStep: function (from, to, percent) {
+                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                    }
+                });
 
-           $('#demo-pie-2').pieChart({
-               barColor: '#fbb03b',
-               trackColor: '#eee',
-               lineCap: 'butt',
-               lineWidth: 8,
-               onStep: function (from, to, percent) {
-                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-               }
-           });
+                $('#demo-pie-2').pieChart({
+                    barColor: '#fbb03b',
+                    trackColor: '#eee',
+                    lineCap: 'butt',
+                    lineWidth: 8,
+                    onStep: function (from, to, percent) {
+                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                    }
+                });
 
-           $('#demo-pie-3').pieChart({
-               barColor: '#ed6498',
-               trackColor: '#eee',
-               lineCap: 'square',
-               lineWidth: 8,
-               onStep: function (from, to, percent) {
-                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-               }
-           });
+                $('#demo-pie-3').pieChart({
+                    barColor: '#ed6498',
+                    trackColor: '#eee',
+                    lineCap: 'square',
+                    lineWidth: 8,
+                    onStep: function (from, to, percent) {
+                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                    }
+                });
 
 
-       });
+            });
 
         </script>
         <!--skycons-icons-->
@@ -95,15 +95,15 @@ screenfull.toggle($('#container')[0]);
         <div id="wrapper">
 
             <!----->
-            <?php include './_tree.php';?>
-            
+            <?php include './_tree.php'; ?>
+
             <div id="page-wrapper" class="gray-bg dashbard-1">
                 <div class="content-main">
 
                     <!--banner-->	
                     <div class="banner">
                         <h2>
-                             <a href="home.php">Home</a>
+                            <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
                             <span>Week Plan Assign</span>
                         </h2>
@@ -170,7 +170,35 @@ screenfull.toggle($('#container')[0]);
                             <div class="panel panel-default">
                                 <div class="panel-heading ">Assign User</div>
                                 <div class="panel-body">
-                                    
+                                    <form class="form-horizontal" action="pm_weekplan_assign_action.php" method="post">
+                                        <div class="form-group">
+                                            <label for="select" class="control-label col-xs-4">Select Employee</label> 
+                                            <div class="col-xs-8">
+                                                <?php
+                                                $sql = "SELECT kpi_user.*,kpi_user_role.description FROM kpi_user INNER JOIN kpi_user_role
+ON kpi_user.user_role = kpi_user_role.user_role
+WHERE kpi_user.user_role != 'PM' AND kpi_user.user_role != 'HIT'
+";
+                                                ?>
+                                                <input type="hidden" name="weekplan_id" value="<?= $_GET['weekplan_id']?>" />
+                                                <select id="select" name="user_id" class="select form-control">
+                                                    <option value="">--select user--</option>
+                                                    <?php 
+                                                    $result = getData($sql);
+                                                    foreach ($result as $value) {
+                                                        ?> <option value="<?= $value['id']?>"><?= $value['empno']?> - <?= $value['first_name']?> [<?= $value['description']?> ]</option>
+ <?php                                               
+                                                                                                    } ?>
+                                                  
+                                                </select>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group row">
+                                            <div class="col-xs-offset-4 col-xs-8">
+                                                <button name="btnAssign" type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +210,7 @@ screenfull.toggle($('#container')[0]);
                     <?php
                     include './_footer.php';
                     ?>
-                    
+
                 </div>
                 <div class="clearfix"> </div>
             </div>
