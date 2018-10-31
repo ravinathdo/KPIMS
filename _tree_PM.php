@@ -8,6 +8,8 @@
                                 <li>
                                     <a href="home.php" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
                                 </li>
+                                
+                          
                                 <li>
                                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">User Manager</span><span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -16,9 +18,8 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="junior_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Weekly Plan</span> </a>
+                                    <a href="junior_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Weekly Plan Explorer</span> </a>
                                 </li>
-
                                 <li>
                                     <a href="gallery.html" class=" hvr-bounce-to-right"><i class="fa fa-picture-o nav_icon"></i> <span class="nav-label">Gallery</span> </a>
                                 </li>

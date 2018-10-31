@@ -87,8 +87,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                         <div class="clearfix"></div>
                         <div class="col-md-12">
-                            <?php if (isset($_POST['btnExplorer'])) {
-                                echo ' From:'. $_POST['from_date'] . '   To:' .$_POST['to_date'];
+                            <?php
+                            if (isset($_POST['btnExplorer'])) {
+                                echo ' From:' . $_POST['from_date'] . '   To:' . $_POST['to_date'];
                                 ?>
                                 <table  id="example" class="display" cellspacing="0" width="100%">
                                     <thead>
@@ -115,7 +116,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                     <td><?= $row['task']; ?></td>
                                                     <td><?= $row['estimated_duration']; ?></td>
                                                     <td><?= $row['status_code']; ?></td>
-                                                    <td><a href="junior_weekplan_actuals.php?weekplan_id=<?= $row['id']; ?>">Actuals</a></td>
+                                                    <td><?php if ($row['status_code'] == 'PENDING') { ?> 
+                                                            <a href="pm_weekplan_assign.php?weekplan_id=<?= $row['id']; ?>">Assign Now</a> 
+                                                        <?php } else {
+                                                            ?>
+                                                            <a href="junior_weekplan_actuals.php?weekplan_id=<?= $row['id']; ?>">Actuals</a> <?php }
+                                                        ?>
+
+                                                    </td>
                                                 </tr>
                                                 <?php
                                             }
@@ -123,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         ?>
                                     </tbody>
                                 </table>
-                                <?php }
+                            <?php }
                             ?>
 
 
