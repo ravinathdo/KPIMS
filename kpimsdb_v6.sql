@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.55 
-MySQL - 5.5.5-10.2.7-MariaDB : Database - kpimsdb
+MySQL - 5.5.54 : Database - kpimsdb
 *********************************************************************
 */
 
@@ -52,7 +52,7 @@ CREATE TABLE `kpi_employee_skill` (
   `employee_id` int(5) NOT NULL,
   `skill_id` int(5) NOT NULL,
   `user_created` int(5) DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`employee_id`,`skill_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -130,7 +130,7 @@ CREATE TABLE `kpi_performance_appraisal` (
   `PAFID` int(5) NOT NULL AUTO_INCREMENT,
   `year_month` varchar(20) DEFAULT NULL,
   `user_id` int(5) DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status_code` varchar(20) DEFAULT NULL,
   `objective_setting_comment` varchar(50) DEFAULT NULL,
   `mid_year_review_comment` varchar(50) DEFAULT NULL,
@@ -188,7 +188,7 @@ CREATE TABLE `kpi_skill_matrix` (
   `skill_id` int(5) DEFAULT NULL,
   `score` int(5) DEFAULT NULL,
   `employee_id` int(5) DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -204,17 +204,19 @@ CREATE TABLE `kpi_user` (
   `last_name` varchar(50) DEFAULT NULL,
   `empno` varchar(50) DEFAULT NULL,
   `nic` varchar(12) DEFAULT NULL,
-  `pword` text DEFAULT NULL,
+  `pword` text,
   `user_role` varchar(20) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT NULL,
   `user_created` int(5) DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `user_updated` int(5) DEFAULT 0,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_updated` int(5) DEFAULT '0',
   `date_updated` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_user` */
+
+insert  into `kpi_user`(`id`,`first_name`,`last_name`,`empno`,`nic`,`pword`,`user_role`,`status_code`,`user_created`,`date_created`,`user_updated`,`date_updated`) values (1,'Admin','Fernando','1343','863512542V','1343','PM','ACTIVE',1,'2018-10-27 07:35:42',0,NULL),(2,'Admin','Fernando','13434','863512552V','13434','ENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL),(3,'je','Perera','1122','863512552V','1122','JENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL),(4,'Smaa','Fernan','1123','863512552V','1123','SMANAGER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL);
 
 /*Table structure for table `kpi_user_role` */
 
@@ -223,12 +225,13 @@ DROP TABLE IF EXISTS `kpi_user_role`;
 CREATE TABLE `kpi_user_role` (
   `user_role` varchar(50) NOT NULL,
   `description` varchar(150) DEFAULT NULL,
+  `access_level` int(5) DEFAULT NULL,
   PRIMARY KEY (`user_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_user_role` */
 
-insert  into `kpi_user_role`(`user_role`,`description`) values ('ENGINEER','Engineer'),('JENGINEER','junior Engineer'),('PM','Project Manager'),('SMANAGER','Senior Manager'),('TEAMLEAD','Team Lead Senior Engineer');
+insert  into `kpi_user_role`(`user_role`,`description`,`access_level`) values ('ENGINEER','Engineer',2),('JENGINEER','junior Engineer',1),('PM','Project Manager',5),('SMANAGER','Senior Manager',4),('TEAMLEAD','Team Lead Senior Engineer',3);
 
 /*Table structure for table `kpi_week_plan` */
 
@@ -239,19 +242,45 @@ CREATE TABLE `kpi_week_plan` (
   `plan_date` varchar(20) DEFAULT NULL,
   `task` varchar(100) DEFAULT NULL,
   `estimated_duration` varchar(50) DEFAULT NULL,
+  `remark` varchar(50) DEFAULT NULL,
+  `status_code` varchar(20) DEFAULT NULL,
+  `assign_to` int(5) DEFAULT '0',
+  `user_created` int(5) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `review_user` int(5) DEFAULT '0',
+  `review_date` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_kpi_week_plan_user` (`user_created`),
+  CONSTRAINT `FK_kpi_week_plan_user` FOREIGN KEY (`user_created`) REFERENCES `kpi_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+/*Data for the table `kpi_week_plan` */
+
+insert  into `kpi_week_plan`(`id`,`plan_date`,`task`,`estimated_duration`,`remark`,`status_code`,`assign_to`,`user_created`,`date_created`,`review_user`,`review_date`) values (1,'2018-10-27','sample task','5','sample remark','ACTIVE',0,1,'2018-10-27 12:26:37',0,NULL),(5,'2018-10-27','sample task','23:21 16:54','sample remark ','ACTIVE',0,3,'2018-10-27 12:33:52',0,NULL),(6,'2018-10-27','sample task','23:21 16:54','sample remark ','ACTIVE',0,3,'2018-10-27 12:38:35',0,NULL);
+
+/*Table structure for table `kpi_week_plan_actual` */
+
+DROP TABLE IF EXISTS `kpi_week_plan_actual`;
+
+CREATE TABLE `kpi_week_plan_actual` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `plan_id` int(5) DEFAULT NULL,
   `actual` varchar(100) DEFAULT NULL,
   `actual_duration` varchar(50) DEFAULT NULL,
   `remark` varchar(50) DEFAULT NULL,
   `status_code` varchar(20) DEFAULT NULL,
   `user_created` int(5) DEFAULT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
-  `review_user` int(5) DEFAULT 0,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `review_user` int(5) DEFAULT '0',
   `review_date` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `NewIndex1` (`plan_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `NewIndex1` (`plan_id`),
+  CONSTRAINT `FK_kpi_week_plan_actual` FOREIGN KEY (`plan_id`) REFERENCES `kpi_week_plan` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
-/*Data for the table `kpi_week_plan` */
+/*Data for the table `kpi_week_plan_actual` */
+
+insert  into `kpi_week_plan_actual`(`id`,`plan_id`,`actual`,`actual_duration`,`remark`,`status_code`,`user_created`,`date_created`,`review_user`,`review_date`) values (1,6,'actial','03:45 TO 04:54','actual remark','DONE',3,'2018-10-27 14:39:11',0,NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
