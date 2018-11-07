@@ -5,7 +5,10 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php session_start();?>
+<?php
+session_start();
+include './DB.php';
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -45,7 +48,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
         <!----->
 
-     
+
         <!--skycons-icons-->
         <script src="js/skycons.js"></script>
         <!--//skycons-icons-->
@@ -71,8 +74,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </div>
                     <!--//banner-->
                     <!--content-->
+<?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER') { ?> 
+                        <div class="content-top">
+                            <div class="col-md-2 ">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">ACTIVE Plans</div>
+                                    <div class="panel-body"><h1>
+                                        <?php
+                                        $sql = "SELECT COUNT(id) AS CNT FROM kpi_week_plan WHERE (assign_to = '" . $_SESSION['userbean']['id'] . "' OR user_created = '" . $_SESSION['userbean']['id'] . "') AND status_code = 'ACTIVE'";
+                                        $data = getData($sql);
+                                        if ($data) {
+                                            foreach ($data as $value) {
+                                                echo $value['CNT'];
+                                            }
+                                        } else {
+                                            echo '0';
+                                        }
+                                        ?></h1>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-10 ">8</div>
+                            <div class="clearfix"> </div>
+                        </div>
+<?php } ?>
+
                     <div class="content-top">
-                        <div class="col-md-4 ">4</div>
+                        <div class="col-md-4 ">
+                        </div>
                         <div class="col-md-8 ">8</div>
                         <div class="clearfix"> </div>
                     </div>

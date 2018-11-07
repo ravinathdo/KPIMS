@@ -78,7 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             $result = getData($sql);
                             foreach ($result as $value) {
                                 ?>
-                                <form class="form-horizontal">
+                            <form class="form-horizontal" >
                                     <div class="form-group">
                                         <label for="from_date" class="control-label col-xs-4">Task</label> 
                                         <div class="col-xs-8">
@@ -140,13 +140,14 @@ VALUES ('" . $_POST['weekplan_id'] . "',
         '" . $_POST['actual'] . "',
         '$actual_duration',
         '" . $_POST['remark'] . "',
-        '" . $_SESSION['userbean']['id'] . "',
-        'DONE');";
+        'DONE',
+        '" . $_SESSION['userbean']['id'] . "');";
                                     $msgArray = array('msgsuccess' => 'Actual created successfuly', 'msgerror' => 'Invalid input or duplicate record');
+//                                    echo $sql;
                                     setData($sql, $msgArray);
                                 }
                                 ?>
-                                <div class="panel-heading ">Set Actuals</div>
+                                <div class="panel-heading ">Set Actuals x</div>
                                 <div class="panel-body">
                                     <?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER') { ?> 
                                         <form class="form-horizontal" action="junior_weekplan_actuals.php?weekplan_id=<?= $_GET['weekplan_id'] ?>" method="post">
@@ -229,13 +230,12 @@ WHERE `id` = '" . $_POST['actual_id'] . "';";
                                                     if($row['status_code'] != 'REVIEW')
                                                     if ($_SESSION['userbean']['user_role'] == 'PM') {
                                                         ?>
-                                                        <form action="junior_weekplan_actuals.php?weekplan_id=<?= $_GET['weekplan_id'] ?>" method="post">
+                                                        <form action="junior_weekplan_actuals.php?weekplan_id=<?= $_GET['weekplan_id'] ?>&flag=REVIEW" method="post">
                                                             <input id="actual" name="actual_id" type="hidden" class="form-control" value="<?= $row['id']; ?>">
                                                             <select name="category">
                                                                 <option value="SLA">SLA</option>
                                                                 <option value="PAYBAL">PAYBAL</option>
                                                             </select>
-                                                            
                                                             <input type="submit" name="approveBtn" name="Approve"/>
                                                         </form>
                                                         <?php
