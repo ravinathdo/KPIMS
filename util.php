@@ -25,4 +25,9 @@ WHERE kpi_user.id = $userid";
     return FALSE;
 }
 
+function getDateTime() {
+    date_default_timezone_set("Asia/Colombo");
+    return date("Y-m-d h:i:sa");
+}
+
 ?>
