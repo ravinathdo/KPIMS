@@ -115,9 +115,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <form class="form-horizontal" action="user_skill_setup_step2.php" method="post">
 
                         <div class="content-top">
-                            <div class="col-md-4 ">
-
-
+                            <div class="col-md-3 ">
+                                <!--Core Skills-->
                                 <div class="panel panel-primary">
                                     <div class="panel-heading ">Core Skills</div>
                                     <div class="panel-body form-horizontal">
@@ -170,14 +169,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <input id="text6" name="7" type="text" class="form-control">
                                             </div>
                                         </div> 
-                                       
+
                                     </div></div>
+                                <!--Data/SharePoint 21-22-->
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading ">Data/SharePoint</div>
+                                    <div class="panel-body form-horizontal">
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Azure Data Services</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="21" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">SharePoint Administration</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="22" type="text" class="form-control">
+                                            </div>
+                                        </div>
 
-
+                                    </div></div>
                             </div>
-                            <div class="col-md-4 ">
-
-
+                            <div class="col-md-2 ">
+                                <!--Microsoft 365-->
                                 <div class="panel panel-primary">
                                     <div class="panel-heading ">Microsoft 365</div>
                                     <div class="panel-body form-horizontal">
@@ -219,17 +233,128 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <input id="text2" name="13" type="text" class="form-control">
                                             </div>
                                         </div>
-                                         <div class="form-group row">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 ">
+                                <!--System Center 14-16-->
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading ">System Center</div>
+                                    <div class="panel-body form-horizontal">
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">OMS</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="14" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">SCCM</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="15" type="text" class="form-control">
+                                            </div>
+                                        </div>		
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">SCOM</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="16" type="text" class="form-control">
+                                            </div>
+                                        </div>		
+
+
+                                    </div>
+                                </div>
+                                
+                                <!--AWS Cloud 23-->
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading ">AWS Cloud</div>
+                                    <div class="panel-body form-horizontal">
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">VPC</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="23" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">EC2</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="24" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">EBS/S3</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="25" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div></div>
+                            </div>
+                            <div class="col-md-2 ">
+                                <!--Azure Solutions 17-20-->
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading ">Azure Solutions</div>
+                                    <div class="panel-body form-horizontal">
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Azure Site Recovery Solutions</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="17" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Vnet/VPN/NSG/WAF</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="18" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Automation</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="19" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Azure EA Portal</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="20" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <!--Security 21-->
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading ">Security</div>
+                                    <div class="panel-body form-horizontal">
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Sophos Security</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="21" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">Sophos Firewall</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="22" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="text" class="control-label col-xs-4">CheckPoint Firewall</label> 
+                                            <div class="col-xs-8">
+                                                <input id="text" name="23" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <div class="col-xs-offset-4 col-xs-8">
                                                 <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
-
                                     </div>
-                                </div>
+                                </div></div>
 
-                            </div>
-                            <div class="col-md-4 ">8</div>
                             <div class="clearfix"> </div>
                         </div>
 

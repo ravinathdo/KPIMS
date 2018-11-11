@@ -15,6 +15,9 @@
                         <li><a href="smanager_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Request Explorer</a></li>
                     </ul>
                 </li>
+                <li><a href="user_skill_setup.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Skill Setup</a></li>
+                <li><a href="user_skill_setup_view.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Skill View</a></li>
+                <li><a href="junior_reports.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Reports</a></li>
 
                 <!--            
                 

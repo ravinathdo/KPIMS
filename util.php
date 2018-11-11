@@ -30,4 +30,37 @@ function getDateTime() {
     return date("Y-m-d h:i:sa");
 }
 
+
+//Algo
+function permutations($letters,$num){ 
+    $last = str_repeat($letters{0},$num); 
+    $result = array(); 
+    while($last != str_repeat(lastchar($letters),$num)){ 
+        $result[] = $last; 
+        $last = char_add($letters,$last,$num-1); 
+    } 
+    $result[] = $last; 
+    return $result; 
+} 
+function char_add($digits,$string,$char){ 
+    if($string{$char} <> lastchar($digits)){ 
+        $string{$char} = $digits{strpos($digits,$string{$char})+1}; 
+        return $string; 
+    }else{ 
+        $string = changeall($string,$digits{0},$char); 
+        return char_add($digits,$string,$char-1); 
+    } 
+} 
+function lastchar($string){ 
+    return $string{strlen($string)-1}; 
+} 
+function changeall($string,$char,$start = 0,$end = 0){ 
+    if($end == 0) $end = strlen($string)-1; 
+    for($i=$start;$i<=$end;$i++){ 
+        $string{$i} = $char; 
+    } 
+    return $string; 
+} 
+//Algo
+
 ?>

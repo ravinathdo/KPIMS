@@ -5,12 +5,10 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php
-session_start();
-include './DB.php';
-?>
+<?php session_start();?>
 <!DOCTYPE HTML>
 <html>
+    <?php include_once './DB.php'; ?>
     <head>
         <title>KPIMS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,25 +28,65 @@ include './DB.php';
         <script src="js/custom.js"></script>
         <script src="js/screenfull.js"></script>
         <script>
-            $(function () {
-                $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+$(function () {
+$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-                if (!screenfull.enabled) {
-                    return false;
-                }
-
-                $('#toggle').click(function () {
-                    screenfull.toggle($('#container')[0]);
-                });
+if (!screenfull.enabled) {
+return false;
+}
 
 
 
-            });
+$('#toggle').click(function () {
+screenfull.toggle($('#container')[0]);
+});
+
+
+
+});
         </script>
 
         <!----->
 
+        <!--pie-chart--->
+        <script src="js/pie-chart.js" type="text/javascript"></script>
+        <script type="text/javascript">
 
+       $(document).ready(function () {
+           $('#demo-pie-1').pieChart({
+               barColor: '#3bb2d0',
+               trackColor: '#eee',
+               lineCap: 'round',
+               lineWidth: 8,
+               onStep: function (from, to, percent) {
+                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+               }
+           });
+
+           $('#demo-pie-2').pieChart({
+               barColor: '#fbb03b',
+               trackColor: '#eee',
+               lineCap: 'butt',
+               lineWidth: 8,
+               onStep: function (from, to, percent) {
+                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+               }
+           });
+
+           $('#demo-pie-3').pieChart({
+               barColor: '#ed6498',
+               trackColor: '#eee',
+               lineCap: 'square',
+               lineWidth: 8,
+               onStep: function (from, to, percent) {
+                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+               }
+           });
+
+
+       });
+
+        </script>
         <!--skycons-icons-->
         <script src="js/skycons.js"></script>
         <!--//skycons-icons-->
@@ -57,53 +95,24 @@ include './DB.php';
         <div id="wrapper">
 
             <!----->
-            <?php
-            include './_tree.php';
-            ?>
-
+            <?php include './_tree.php';?>
+            
             <div id="page-wrapper" class="gray-bg dashbard-1">
                 <div class="content-main">
 
                     <!--banner-->	
                     <div class="banner">
                         <h2>
-                            <a href="home.php">Home</a>
+                             <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
                             <span>Dashboard</span>
                         </h2>
                     </div>
                     <!--//banner-->
                     <!--content-->
-<?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER') { ?> 
-                        <div class="content-top">
-                            <div class="col-md-2 ">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">ACTIVE Plans</div>
-                                    <div class="panel-body"><h1>
-                                        <?php
-                                        $sql = "SELECT COUNT(id) AS CNT FROM kpi_week_plan WHERE (assign_to = '" . $_SESSION['userbean']['id'] . "' OR user_created = '" . $_SESSION['userbean']['id'] . "') AND status_code = 'ACTIVE'";
-                                        $data = getData($sql);
-                                        if ($data) {
-                                            foreach ($data as $value) {
-                                                echo $value['CNT'];
-                                            }
-                                        } else {
-                                            echo '0';
-                                        }
-                                        ?></h1>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-md-10 "></div>
-                            <div class="clearfix"> </div>
-                        </div>
-<?php } ?>
-
                     <div class="content-top">
-                        <div class="col-md-4 ">
-                        </div>
-                        <div class="col-md-8 "></div>
+                        <div class="col-md-4 ">4</div>
+                        <div class="col-md-8 ">8</div>
                         <div class="clearfix"> </div>
                     </div>
                     <!---->
@@ -112,7 +121,7 @@ include './DB.php';
                     <?php
                     include './_footer.php';
                     ?>
-
+                    
                 </div>
                 <div class="clearfix"> </div>
             </div>

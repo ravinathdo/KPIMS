@@ -8,13 +8,16 @@
                 <li>
                     <a href="home.php" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
                 </li>
-                <li>
-                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Skill Matrix</span><span class="fa arrow"></span></a>
+              <li>
+                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Weekly Plan Matrix</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="junior_weekplan_matrix.php" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>New Skill</a></li>
-                        <li><a href="junior_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Skill Explorer</a></li>
+                        <li><a href="junior_weekplan_matrix.php" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>New Plan</a></li>
+                        <li><a href="junior_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Plan Explorer</a></li>
                     </ul>
                 </li>
+                <li><a href="user_skill_setup.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Skill Setup</a></li>
+                <li><a href="user_skill_setup_view.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Skill View</a></li>
+                <li><a href="engineer_reports.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Reports</a></li>
 
                 <!--            
                 

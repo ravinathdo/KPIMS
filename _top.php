@@ -5,7 +5,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <h1> <a class="navbar-brand" href="index.html">Minimal</a></h1>         
+                    <h1> <a class="navbar-brand" href="#">KPIMS</a></h1>         
                 </div>
                 <div class=" border-bottom">
                     <div class="full-left">
@@ -92,9 +92,9 @@
                                 <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">
                                         <?= $_SESSION['userbean']['first_name'] ?> [<?= $_SESSION['userbean']['user_role'] ?>]<i class="caret"></i></span><img src="images/wo.jpg"></a>
                                 <ul class="dropdown-menu " role="menu">
-                                    <li><a href="profile.html"><i class="fa fa-user"></i>Edit Profile</a></li>
-                                    <li><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox</a></li>
-                                    <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calender</a></li>
+                                    <li><a href="#"><i class="fa fa-user"></i>Edit Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i>Inbox</a></li>
+                                    <li><a href="#"><i class="fa fa-calendar"></i>Calender</a></li>
                                     <li><a href="logout.php"><i class="fa fa-clipboard"></i>logout</a></li>
                                 </ul>
                             </li>

@@ -22,6 +22,9 @@ switch ($_SESSION['userbean']['user_role']) {
                 case 'TEAMLEAD':
                     include './_tree_TEAMLEAD.php';
                     break;
+                case 'HIT':
+                    include './_tree_HIT.php';
+                    break;
             }
 
 ?>
