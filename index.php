@@ -40,7 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         foreach ($result as $value) {
                             $_SESSION['userbean'] = $value;
                             date_default_timezone_set("Asia/Colombo");
-                            $today = date("Y-m-d h:i:sa");
+                            $today = date("Y-m-d");
                             $_SESSION['today'] = $today;
                         }
                         header("Location:home.php");

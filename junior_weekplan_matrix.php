@@ -64,13 +64,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h2>
                             <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
-                            <span>Weekly plan Matrix</span>
+                            <span>New Weekly plan</span>
                         </h2>
                     </div>
                     <!--//banner-->
                     <!--content-->
                     <div class="content-top">
                         <div class="col-md-8 ">
+                            <span class="mando-msg">* Fields are mandatory</span>
                             <?php
                             if (isset($_POST['submit'])) {
                                 $estimated_duration = $_POST['from_time'] . ' TO ' . $_POST['to_time'];
@@ -90,31 +91,31 @@ VALUES ('" . $_POST['plan_date'] . "',
         '" . $_SESSION['userbean']['id'] . "',
         '" . $_SESSION['userbean']['id'] . "');";
 //                                echo $sql;
-                                $msgArray = array('msgsuccess' => 'New skill created', 'msgerror' => 'Invalid input or duplicate entry');
+                                $msgArray = array('msgsuccess' => 'New Plan created', 'msgerror' => 'Invalid input or duplicate entry');
                                 setData($sql, $msgArray);
                             }
                             ?>
 
                             <form class="form-horizontal" action="junior_weekplan_matrix.php" method="post">
                                 <div class="form-group">
-                                    <label for="plan_date" class="control-label col-xs-4">Plan Date</label> 
+                                    <label for="plan_date" class="control-label col-xs-4">Plan Date <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="plan_date" name="plan_date" type="date" class="form-control">
+                                        <input id="plan_date" required="" name="plan_date" type="date" min="<?= $_SESSION['today']?>" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="task" class="control-label col-xs-4">Task</label> 
+                                    <label for="task" class="control-label col-xs-4">Task <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-8">
-                                        <input id="task" name="task" type="text" class="form-control">
+                                        <input id="task" name="task" required="" type="text" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="estimated_duration" class="control-label col-xs-4">Estimated Duration</label> 
+                                    <label for="estimated_duration" class="control-label col-xs-4">Estimated Duration <span class="mando-msg">*</span></label> 
                                     <div class="col-xs-4">
-                                        From <input id="estimated_duration" name="from_time" type="time" class="form-control">
+                                        From <input id="estimated_duration" required="" name="from_time" type="time" class="form-control">
                                     </div>
                                     <div class="col-xs-4">
-                                        To   <input id="estimated_duration" name="to_time" type="time" class="form-control">
+                                        To   <input id="estimated_duration" required="" name="to_time" type="time" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -130,7 +131,7 @@ VALUES ('" . $_POST['plan_date'] . "',
                                 </div>
                             </form>
                         </div>
-                        <div class="col-md-4 ">4</div>
+                        <div class="col-md-4 "></div>
                         <div class="clearfix"> </div>
                     </div>
                     <!---->

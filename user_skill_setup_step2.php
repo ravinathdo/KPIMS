@@ -115,15 +115,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                             <?php
                             if (isset($_POST['btnSubmit'])) {
-                                $month_year = $_POST['month_year'];
+                                $month_year = (string)$_POST['month_year'];
+                                
+                                
+                                
                                 for ($index = 1; $index <= 13; $index++) {
                                     $field_name =  $index;
                                     if ($_POST[$field_name] != '') {
-                                        $sql ="INSERT INTO kpi_skill_matrix (month_year,skill_id,score,employee_id) VALUES ($month_year,$index,'".$_POST[$field_name]."','".$_SESSION['userbean']['id']."')";
+                                        $sql ="INSERT INTO kpi_skill_matrix (month_year,skill_id,score,employee_id) VALUES ('$month_year',$index,'".$_POST[$field_name]."','".$_SESSION['userbean']['id']."')";
                                         $msgArray = array('msgsuccess' => '', 'msgerror' => 'Duplicate Entry');
                                         setData($sql, $msgArray);
                                     }
                                 }
+                                
+                                echo '<p class="bg-success msg-success">'.$month_year .'Skill created successfully</p>';
                             }
                             ?>
 

@@ -2,3 +2,6 @@
 <p class="bg-success msg-success">...</p>
 <p class="bg-info">...</p>
 <p class="bg-warning">...</p>
+
+
+<span class="mando-msg">* Fields are mandatory</span>
