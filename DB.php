@@ -92,7 +92,7 @@ function setDelete($sql) {
     }
 
     if (mysqli_query($conn, $sql)) {
-        //echo "Record deleted successfully";
+        echo '<p class="bg-success msg-success">Record deleted successfully<p>';
     } else {
         // echo "Error deleting record: " . mysqli_error($conn);
     }

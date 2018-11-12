@@ -74,102 +74,108 @@ include './DB.php';
                     </div>
                     <!--//banner-->
                     <!--content-->
-<?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER') { ?> 
+                    <?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER') { ?> 
                         <div class="content-top">
                             <div class="col-md-2 ">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">ACTIVE Weekly Plans</div>
                                     <div class="panel-body"><h1 style="text-align: center">
-                                        <?php
-                                        $sql = "SELECT COUNT(id) AS CNT FROM kpi_week_plan WHERE (assign_to = '" . $_SESSION['userbean']['id'] . "' OR user_created = '" . $_SESSION['userbean']['id'] . "') AND status_code = 'ACTIVE'";
-                                        $data = getData($sql);
-                                        if ($data) {
-                                            foreach ($data as $value) {
-                                                echo $value['CNT'];
+                                            <?php
+                                            $sql = "SELECT COUNT(id) AS CNT FROM kpi_week_plan WHERE (assign_to = '" . $_SESSION['userbean']['id'] . "' OR user_created = '" . $_SESSION['userbean']['id'] . "') AND status_code = 'ACTIVE'";
+                                            $data = getData($sql);
+                                            if ($data) {
+                                                foreach ($data as $value) {
+                                                    echo $value['CNT'];
+                                                }
+                                            } else {
+                                                echo '0';
                                             }
-                                        } else {
-                                            echo '0';
-                                        }
-                                        ?></h1>
+                                            ?></h1>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="col-md-10 ">
-                                
-                                
+
+
                                 <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-                                
+
                                 <script src="js/highcharts.js" type="text/javascript"></script>
                                 <script src="js/exporting.js" type="text/javascript"></script>
                                 <script>
-                                
-  
-Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Skill Matrix Summary'
-    },
-    subtitle: {
-        text: 'Source: KPIMS'
-    },
-    xAxis: {
-        type: 'category',
-        labels: {
-            rotation: -45,
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
+
+    <?php
+    $sqlChart = "SELECT SUM(kpi_skill_matrix.score) AS score,kpi_skill.skill_description FROM kpi_skill_matrix 
+INNER JOIN kpi_skill ON kpi_skill_matrix.skill_id = kpi_skill.skill_id WHERE kpi_skill_matrix.employee_id = '" . $_SESSION['userbean']['id'] . "'
+GROUP BY kpi_skill_matrix.skill_id";
+    $data0 = getData($sqlChart);
+    ?>
+
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Skill Matrix Summary'
+                },
+                subtitle: {
+                    text: 'Source: KPIMS'
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Population (millions)'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'Population in 2017: <b>{point.y} millions</b>'
+                },
+                series: [{
+                        name: 'Population',
+                        data: [<?php
+    if ($data0)
+        foreach ($data0 as $value) {
+            ?>['<?php echo $value['skill_description'];?>', <?php echo $value['score'];?>],<?php
         }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Population (millions)'
-        }
-    },
-    legend: {
-        enabled: false
-    },
-    tooltip: {
-        pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
-    },
-    series: [{
-        name: 'Population',
-        data: [
-            ['Networking', 24.2],
-            ['Windows Server', 20.8],
-            ['AD AAD', 14.9],
-            ['Exchange', 13.7],
-            ['Office 365', 13.1]
-        ],
-        dataLabels: {
-            enabled: true,
-            rotation: -90,
-            color: '#FFFFFF',
-            align: 'right',
-            format: '{point.y:.1f}', // one decimal
-            y: 10, // 10 pixels down from the top
-            style: {
-                fontSize: '13px',
-                fontFamily: 'Verdana, sans-serif'
-            }
-        }
-    }]
-});
+    ?>
+                        ],
+                        dataLabels: {
+                            enabled: true,
+                            rotation: -90,
+                            color: '#FFFFFF',
+                            align: 'right',
+                            format: '{point.y:.1f}', // one decimal
+                            y: 10, // 10 pixels down from the top
+                            style: {
+                                fontSize: '13px',
+                                fontFamily: 'Verdana, sans-serif'
+                            }
+                        }
+                    }]
+            });
                                 </script>
-                                
-                                
-                                
-                                
-                                
+
+
+
+
+
                             </div>
                             <div class="clearfix"> </div>
                         </div>
-<?php } ?>
+                    <?php } ?>
 
                     <div class="content-top">
                         <div class="col-md-4 ">

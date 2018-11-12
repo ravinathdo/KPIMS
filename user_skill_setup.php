@@ -114,296 +114,69 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                     <form class="form-horizontal" action="user_skill_setup_step2.php" method="post">
 
-
                         <div class="content-top">
-                            <div class="col-md-3 ">
-                                <!--Core Skills 1-8-->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">Core Skills</div>
-                                    <div class="panel-body form-horizontal">
-                                        <span class="mando-msg">* Fields are mandatory</span>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Year Month <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="month_year" type="month" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Networking <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="1" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text1" class="control-label col-xs-4">Windows Server <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text1" name="2" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text2" class="control-label col-xs-4">AD/AAD <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text2" name="3" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text3" class="control-label col-xs-4">Exchange <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text3" name="4" type="text"  required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text4" class="control-label col-xs-4">Office 365 <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text4" name="5" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text5" class="control-label col-xs-4">Azure Bakup/DPM <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text5" name="6" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text6" class="control-label col-xs-4">Azure VM/Hyper-V <span class="mando-msg">*</span></label> 
-                                            <div class="col-xs-8">
-                                                <input id="text6" name="7" type="text" required="" class="form-control">
-                                            </div>
-                                        </div> 
-
-                                    </div></div>
-                                <!--Microsoft 365-  9-14 -->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">Microsoft 365</div>
-                                    <div class="panel-body form-horizontal">
-
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">EMS</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="9" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text1" class="control-label col-xs-4">MDOP</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text1" name="10" type="text" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="text3" class="control-label col-xs-4">DLP/AIP</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text3" name="11" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text4" class="control-label col-xs-4">Win10 Ent</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text4" name="12" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text5" class="control-label col-xs-4">Cloud App Security</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text5" name="13" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text2" class="control-label col-xs-4">Intune</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text2" name="14" type="text" class="form-control">
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                                <!--System Center 15-17-->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">System Center</div>
-                                    <div class="panel-body form-horizontal">
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">OMS</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="15" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">SCCM</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="16" type="text" class="form-control">
-                                            </div>
-                                        </div>		
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">SCOM</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="17" type="text" class="form-control">
-                                            </div>
-                                        </div>		
-
-
-                                    </div>
-                                </div>
-                                <!--Azure Solutions 18-21-->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">Azure Solutions</div>
-                                    <div class="panel-body form-horizontal">
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Azure Site Recovery Solutions</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="18" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Vnet/VPN/NSG/WAF</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="19" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Automation</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="20" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Azure EA Portal</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="21" type="text" class="form-control">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!--Data/SharePoint 22-23-->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">Data/SharePoint</div>
-                                    <div class="panel-body form-horizontal">
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Azure Data Services</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="22" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">SharePoint Administration</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="23" type="text" class="form-control">
-                                            </div>
-                                        </div>
-
-                                    </div></div>
-                                <!--Security 23-25-->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">Security</div>
-                                    <div class="panel-body form-horizontal">
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Sophos Security</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="23" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">Sophos Firewall</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="24" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">CheckPoint Firewall</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="25" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-xs-offset-4 col-xs-8">
-                                                <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--AWS Cloud 26-28-->
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading ">AWS Cloud</div>
-                                    <div class="panel-body form-horizontal">
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">VPC</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="26" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">EC2</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="27" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="text" class="control-label col-xs-4">EBS/S3</label> 
-                                            <div class="col-xs-8">
-                                                <input id="text" name="28" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-2 ">
-                            </div>
-                            <div class="col-md-2 ">
-                            </div>
-                            <div class="col-md-2 ">
-                            </div>
-                            <div class="col-md-2 ">
-                            </div>
-
-
-
-
-
-
                             <div class="clearfix"> </div>
                         </div>
 
                         <div class="content-top">
                             <div class="col-md-12 ">
+                                <div class="row">
+                                    <div class="col-md-3"> Year Month <input id="text" name="month_year" type="month" required="" class="form-control"></div>
+                                    <div class="col-md-4"><br><button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button></div>
+                                    <div class="col-md-5"><br><span class="mando-msg">Red color Fields are mandatory</span></div>
+                                </div>
+                                <br>
                                 <?php
+                                
+                                /*
+                                  SELECT kpi_skill.*,kpi_skill_category.skill_category_description FROM kpi_skill
+                                  INNER JOIN kpi_skill_category
+                                  ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id
+                                 */
+                                
                                 $sql = "SELECT kpi_skill.*,kpi_skill_category.skill_category_description FROM kpi_skill
 INNER JOIN kpi_skill_category
 ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id";
                                 ?>
                                 <table id="example" class="display" cellspacing="0" width="100%" >
-                                    <?php
-                                    $dataSet = getData($sql);
-                                    foreach ($dataSet as $value) {
-                                        ?>
+                                    <thead>
                                         <tr>
-                                            <td><?= $value['skill_id'] ?></td>
-                                            <td <?= $value['note_css'] ?>><?= $value['skill_category_description'] ?></td>
-                                            <td><?= $value['skill_description'] ?></td>
-                                            <td><input id="text" name="<?= $value['skill_id'] ?>" <?= $value['note_html'] ?> type="text" class="form-control"></td>
+                                            <th>Category</th>
+                                            <th>Skill</th>
+                                            <th>Score</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         <?php
-                                    }
-                                    ?>
+                                        $dataSet = getData($sql);
+                                        foreach ($dataSet as $value) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $value['skill_category_description'] ?></td>
+                                                <td><?= $value['skill_description'] ?></td>
+                                                <td style="width: 15%"><input id="text" name="<?= $value['skill_id'] ?>" <?= $value['note_html'] ?> type="text" <?= $value['note_css'] ?>></td>
+                                                <td></td>
+                                                <td></td>
 
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
                                 </table>
-                               
+
                                 <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
                                 <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
                                 <script type="text/javascript">
-                                    $(document).ready(function () {
-                                        $('#example').DataTable();
-                                    });
+            $(document).ready(function () {
+                $('#example').DataTable({paging: false});
+            });
                                 </script>
                             </div>
                             <div class="clearfix"> </div>
                         </div>
-
-
-
-
                     </form>
                     <!---->
 

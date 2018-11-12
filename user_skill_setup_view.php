@@ -116,12 +116,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="form-group">
                                     <label for="text" class="control-label col-xs-4">Year Month</label> 
                                     <div class="col-xs-8">
-                                        <input id="text" name="month_year" type="text" class="form-control">
+                                        <input id="text" name="month_year" type="month" required="" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-xs-offset-4 col-xs-8">
-                                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                        <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -136,74 +136,72 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="content-top">
                         <div class="col-md-12 ">
 
+
+
                             <?php
-                            if (isset($_POST['submit'])) {
-                                /*
-                                  SELECT kpi_skill_matrix.*,kpi_skill.skill_description,kpi_skill_category.skill_category_description FROM kpi_skill_matrix
-                                  INNER JOIN
-                                  kpi_skill ON kpi_skill_matrix.skill_id = kpi_skill.skill_id
-                                  INNER JOIN
-                                  kpi_skill_category ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id
-                                  WHERE kpi_skill_matrix.month_year = '2018' AND kpi_skill_matrix.employee_id = '3'
-                                 *                                  */
-                                $sql = " SELECT kpi_skill_matrix.*,kpi_skill.skill_description,kpi_skill_category.skill_category_description FROM kpi_skill_matrix
- INNER JOIN 
-kpi_skill ON kpi_skill_matrix.skill_id = kpi_skill.skill_id
- INNER JOIN 
-kpi_skill_category ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id
-  WHERE kpi_skill_matrix.month_year = '" . $_POST['month_year'] . "' AND kpi_skill_matrix.employee_id = '" . $_SESSION['userbean']['id'] . "' ";
+                            if (isset($_POST['btnSubmit'])) {
+
+                                $sql = "SELECT kpi_skill.*,kpi_skill_category.skill_category_description,kpi_skill_matrix.score,kpi_skill_matrix.status_code,kpi_skill_matrix.id AS matid FROM kpi_skill
+INNER JOIN kpi_skill_matrix ON kpi_skill_matrix.skill_id = kpi_skill.skill_id
+INNER JOIN kpi_skill_category ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id
+WHERE kpi_skill_matrix.month_year = '" . $_POST['month_year'] . "' AND employee_id = '" . $_SESSION['userbean']['id'] . "' ";
                                 ?>
-                                <table id="example" class="display" cellspacing="0" width="100%">
+                                <table id="example" class="display" cellspacing="0" width="100%" >
                                     <thead>
                                         <tr>
-                                            <th>Year Month</th>
                                             <th>Category</th>
                                             <th>Skill</th>
-                                            <th>Date Created</th>
                                             <th>Status</th>
+                                            <th>Score</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $resultx = getData($sql);
-                                        if ($resultx != FALSE) {
-                                            while ($row = mysqli_fetch_assoc($resultx)) {
-                                                ?>
-                                                <tr>
-                                                    <td><?= $row['month_year']; ?></td>
-                                                    <td><?= $row['skill_category_description']; ?></td>
-                                                    <td><?= $row['skill_description']; ?></td>
-                                                    <td><?= $row['date_created']; ?></td>
-                                                    <td><?= $row['status_code']; ?></td>
-                                                    <td><?php if ($row['status_code'] == 'ACTIVE') { ?> 
-                                                        <form action="" method="post">
-                                                            <input type="hidden" name="score" value="<?= $row['id']; ?>" />
-                                                            <input type="text" name="score" value="<?= $row['score']; ?>" />
-                                                            <input type="submit" class="btn btn-primary" value="Update" />
+                                        $dataSet = getData($sql);
+                                        foreach ($dataSet as $value) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $value['skill_category_description'] ?></td>
+                                                <td><?= $value['skill_description'] ?></td>
+                                                 <td><?= $value['status_code'] ?></td>
+                                                <td >
+                                                    <?php if ($value['status_code'] == 'ACTIVE') { ?>
+                                                        <form action="user_skill_setup_update.php" method="post"> 
+                                                            <input type="hidden" value="<?= $value['matid']; ?>" name="id"/>
+                                                            <input type="hidden" value="<?= $value['skill_id']; ?>" name="fieldName"/>
+                                                            <input id="text" value="<?= $value['score'] ?>" name="<?= $value['skill_id'] ?>" <?= $value['note_html'] ?> type="text" <?= $value['note_css'] ?>>
+                                                            <button style="float: right" name="btnSubmit" type="submit" class="btn btn-primary">Update</button>
+                                                            <a   href="user_skill_setup_remove.php?id=<?= $value['matid'] ?>">remove</a>
                                                         </form>
-                                                        <?php }else{
-                                                             echo $row['score'];
-                                                        } ?>
-                                                    </td>
-                                                </tr>
-                                                <?php
-                                            }
+                                                    <?php
+                                                    } else {
+                                                        echo $value['score'];
+                                                    }
+                                                    ?>    
+
+                                                </td>
+                                               
+                                                <td></td>
+
+                                            </tr>
+                                            <?php
                                         }
                                         ?>
                                     </tbody>
                                 </table>
-                                <?php
-                            }
-                            ?>
 
-                            <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-                            <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-                            <script type="text/javascript">
+                                <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+                                <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+                                <script type="text/javascript">
             $(document).ready(function () {
-                $('#example').DataTable();
+                $('#example').DataTable({paging: false});
             });
-                            </script>
+                                </script>
+
+
+<?php } ?>
+
 
                         </div>
                     </div>
