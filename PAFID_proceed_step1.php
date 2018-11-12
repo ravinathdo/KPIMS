@@ -113,37 +113,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="content-top">
                         <div class="col-md-6 ">
 
+                            <?php
+                            $sql = "SELECT kpi_goal_objective.*,kpi_goal_ratio.goal_ratio,kpi_goal_ratio.precentage FROM kpi_goal_objective
+INNER JOIN kpi_goal_ratio 
+ON kpi_goal_objective.goal_ratio_id = kpi_goal_ratio.id
+WHERE kpi_goal_objective.user_role = 'JENGINEER'";
+                            $data = getData($sql);
+                            foreach ($data as $value) {
+                                ?>
+
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading "><?= $value['goal_ratio'] ?> [<?= $value['point'] ?> %]</div>
+                                    <div class="panel-body form-horizontal">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="textarea" class="control-label col-xs-4">Mid Year Review </label> 
+                                                <div class="col-xs-8">
+                                                    <textarea id="textarea" name="<?= $value['id'] ?>_mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="textarea1" class="control-label col-xs-4">Annual Review</label> 
+                                                <div class="col-xs-8">
+                                                    <textarea id="textarea1" name="<?= $value['id'] ?>_annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
+                                                </div>
+                                            </div> 
+                                        </form>
+
+                                    </div>
+                                </div>
+
+                                <?php
+                            }
+                            ?>
+
+
                         </div>
                         <div class="col-md-6 ">
 
-                            <div class="panel panel-primary">
-                                <div class="panel-heading ">Technical Competency</div>
-                                <div class="panel-body form-horizontal">
 
-                                    
-                                    <?php 
-                                    
-                                    ?>
-                                    
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="textarea" class="control-label col-xs-4">Mid Year Review Comment</label> 
-                                            <div class="col-xs-8">
-                                                <textarea id="textarea" name="mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="textarea1" class="control-label col-xs-4">Annual Review</label> 
-                                            <div class="col-xs-8">
-                                                <textarea id="textarea1" name="annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                            </div>
-                                        </div> 
-                                        
-                                    </form> 
-
-
-                                </div>
-                            </div>
 
                         </div>
                         <div class="clearfix"></div>
