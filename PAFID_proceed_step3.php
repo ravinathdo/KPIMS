@@ -108,61 +108,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <span>Dashboard</span>
                         </h2>
                     </div>
-                    <!--//banner-->
+                    <!--//banner--> 
                     <!--content-->
                     <div class="content-top">
-                        <div class="col-md-5 ">
+                        <div class="col-md-4 ">
 
-                            <form action="PIFID_objective_setting.php" method="post">
+                            <form class="form-horizontal" action="PIFID_overall_rating.php" method="post">
                                 <input type="hidden" name="PAFID" value="<?= $_GET['id'] ?>" />
-                                <?php
-                                $sql = "SELECT kpi_goal_objective.*,kpi_goal_ratio.goal_ratio,kpi_goal_ratio.precentage FROM kpi_goal_objective
-INNER JOIN kpi_goal_ratio 
-ON kpi_goal_objective.goal_ratio_id = kpi_goal_ratio.id
-WHERE kpi_goal_objective.user_role = 'JENGINEER'";
-                                $data = getData($sql);
-                                foreach ($data as $value) {
-                                    ?>
-                                    <input type="hidden" name="<?= $value['id'] ?>_goal_objective_id" value="<?= $value['id'] ?>" />
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading "><?= $value['goal_ratio'] ?> [<?= $value['point'] ?> %]</div>
-                                        <div class="panel-body form-horizontal">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="textarea" class="control-label col-xs-4">Mid Year Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea" required="" name="<?= $value['id'] ?>_mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="textarea1" class="control-label col-xs-4">Annual Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea1"  required=""  name="<?= $value['id'] ?>_annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div> 
-
-                                        </div>
+                                <div class="form-group">
+                                    <label for="performance_rating" class="control-label col-xs-4">Performance Rating</label> 
+                                    <div class="col-xs-8">
+                                        <input id="performance_rating" name="performance_rating" type="text" class="form-control">
                                     </div>
-
-                                    <?php
-                                }
-                                ?>
-                                <button name="submit" type="submit" class="btn btn-primary">Submit</button><br>
+                                </div>
+                                <div class="form-group">
+                                    <label for="behavioural_rating" class="control-label col-xs-4">Behavioural Rating</label> 
+                                    <div class="col-xs-8">
+                                        <input id="behavioural_rating" name="behavioural_rating" type="text" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
                             </form>
 
                         </div>
-                        <div class="col-md-7 ">
-
-
-
-                            <div id="PAF">
-                               <?php include './PAF.php';?>
-                            </div>
-
-
-
-                        </div>
-                        <div class="clearfix"></div>
+                        <div class="col-md-8 ">8</div>
+                        <div class="clearfix"> </div>
                     </div>
                     <!---->
 

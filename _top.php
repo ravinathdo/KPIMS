@@ -12,11 +12,11 @@
                         <section class="full-top">
                             <button id="toggle"><i class="fa fa-arrows-alt"></i></button>	
                         </section>
-                        <form class=" navbar-left-right">
+<!--                        <form class=" navbar-left-right">
                             <input type="text"  value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {
                           this.value = 'Search...';}">
                             <input type="submit" value="" class="fa fa-search">
-                        </form>
+                        </form>-->
                         <div class="clearfix"> </div>
                     </div>
 
@@ -26,7 +26,9 @@
                     <div class="drop-men" >
                         <ul class=" nav_1">
 
-                            <li class="dropdown at-drop">
+                            
+                            
+<!--                            <li class="dropdown at-drop">
                                 <a href="#" class="dropdown-toggle dropdown-at " data-toggle="dropdown"><i class="fa fa-globe"></i> <span class="number">5</span></a>
                                 <ul class="dropdown-menu menu1 " role="menu">
                                     <li>
@@ -87,14 +89,16 @@
                                         </a></li>
                                     <li><a href="#" class="view">View all messages</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
+                            
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">
                                         <?= $_SESSION['userbean']['first_name'] ?> [<?= $_SESSION['userbean']['user_role'] ?>]<i class="caret"></i></span><img src="images/wo.jpg"></a>
                                 <ul class="dropdown-menu " role="menu">
-                                    <li><a href="#"><i class="fa fa-user"></i>Edit Profile</a></li>
-                                    <li><a href="#"><i class="fa fa-envelope"></i>Inbox</a></li>
-                                    <li><a href="#"><i class="fa fa-calendar"></i>Calender</a></li>
+                                    <li><a href="change_password.php"><i class="fa fa-user"></i>Edit Profile</a></li>
+<!--                                    <li><a href="#"><i class="fa fa-envelope"></i>Inbox</a></li>
+                                    <li><a href="#"><i class="fa fa-calendar"></i>Calender</a></li>-->
                                     <li><a href="logout.php"><i class="fa fa-clipboard"></i>logout</a></li>
                                 </ul>
                             </li>

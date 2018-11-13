@@ -105,7 +105,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h2>
                             <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
-                            <span>PERFORMANCE APPRAISAL Explorer</span>
+                            <span>PERFORMANCE APPRAISAL Approval Explorer</span>
                         </h2>
                     </div>
                     <!--//banner-->
@@ -114,7 +114,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div class="col-md-8 ">
 
                             <?php
-                            $sql = "SELECT * FROM kpi_performance_appraisal WHERE user_id = '" . $_SESSION['userbean']['id'] . "'";
+                            switch ($_SESSION['userbean']['user_role']) {
+                                case 'ENGINEER':
+                                    //show only  JENGINEER
+                                    $sql = "SELECT kpi_performance_appraisal.* FROM kpi_performance_appraisal 
+INNER JOIN kpi_user 
+ON kpi_user.id = kpi_performance_appraisal.user_id 
+WHERE kpi_user.user_role = 'JENGINEER'";
+                                    
+                                    break;
+                                case 'TEAMLEAD':    //show only  JENGINEER + ENGINEER
+                                       $sql = "SELECT kpi_performance_appraisal.* FROM kpi_performance_appraisal 
+INNER JOIN kpi_user 
+ON kpi_user.id = kpi_performance_appraisal.user_id 
+WHERE kpi_user.user_role = 'JENGINEER' OR kpi_user.user_role = 'ENGINEER' ";
+                                    break;
+                                case 'SMANAGER'://show only  JENGINEER + ENGINEER + TEAMLEAD
+                                      $sql = "SELECT kpi_performance_appraisal.* FROM kpi_performance_appraisal 
+INNER JOIN kpi_user 
+ON kpi_user.id = kpi_performance_appraisal.user_id 
+WHERE kpi_user.user_role = 'JENGINEER' OR kpi_user.user_role = 'ENGINEER' OR kpi_user.user_role = 'TEAMLEAD' ";
+                                    break;
+                                case 'PM':
+                                      $sql = "SELECT kpi_performance_appraisal.* FROM kpi_performance_appraisal 
+INNER JOIN kpi_user 
+ON kpi_user.id = kpi_performance_appraisal.user_id 
+WHERE kpi_user.user_role = 'JENGINEER' OR kpi_user.user_role = 'ENGINEER' OR kpi_user.user_role = 'TEAMLEAD'  OR kpi_user.user_role = 'SMANAGER' ";
+                                    break;
+                                case 'HIT':
+                                    $sql = "SELECT kpi_performance_appraisal.* FROM kpi_performance_appraisal 
+INNER JOIN kpi_user 
+ON kpi_user.id = kpi_performance_appraisal.user_id 
+WHERE kpi_user.user_role = 'JENGINEER' OR kpi_user.user_role = 'ENGINEER' OR kpi_user.user_role = 'TEAMLEAD'  OR kpi_user.user_role = 'SMANAGER' OR kpi_user.user_role = 'PM' ";
+                                    break;
+                            }
+
 
                             $dataSet = getData($sql);
                             ?>
@@ -126,29 +160,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <th>Month Year</th>
                                         <th>Date Time</th>
                                         <th>Status</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    if ($dataSet)
-                                        foreach ($dataSet as $value) {
-                                            ?> 
-                                            <tr>
-                                                <td><?= $value['PAFID'] ?></td>
-                                                <td><?= $value['month_year'] ?></td>
-                                                <td><?= $value['date_created'] ?></td>
-                                                <td><?= $value['status_code'] ?></td>
-                                                <td><a href="PAFID_proceed_step1.php?id=<?= $value['PAFID'] ?>">OBJECTIVE</a></td>
-                                                <td><a href="PAFID_proceed_step2.php?id=<?= $value['PAFID'] ?>">BEHAVIOURAL</a></td>
-                                                <td><a href="PAFID_proceed_step3.php?id=<?= $value['PAFID'] ?>">OVERALL</a></td>
-                                                <td><a href="PAFID_view.php?id=<?= $value['PAFID'] ?>">VIEW</a></td>
-                                            </tr>  
-                                            <?php
-                                        }
+                                    if($dataSet)
+                                    foreach ($dataSet as $value) {
+                                        ?> 
+                                        <tr>
+                                            <td><?= $value['PAFID'] ?></td>
+                                            <td><?= $value['month_year'] ?></td>
+                                            <td><?= $value['date_created'] ?></td>
+                                            <td><?= $value['status_code'] ?></td>
+                                            <?php if($value['status_code']=='ACTIVE'){ ?> 
+                                            <td><a href="PAFID_approval_step1.php?id=<?= $value['PAFID'] ?>&status_code=<?= $value['status_code']?>">OBJECTIVE</a></td>
+                                            <td><a href="PAFID_approval_step2.php?id=<?= $value['PAFID'] ?>&status_code=<?= $value['status_code']?>">BEHAVIOURAL</a></td>
+                                            <td><a href="PAFID_proceed_step3.php?id=<?= $value['PAFID'] ?>&status_code=<?= $value['status_code']?>">OVERALL</a></td>
+                                            <?php }?>
+                                            <td><a href="PAFID_view.php?id=<?= $value['PAFID'] ?>&status_code=<?= $value['status_code']?>">VIEW</a></td>
+                                        </tr>  
+                                        <?php
+                                    }
                                     ?>
 
                                     <?php ?>

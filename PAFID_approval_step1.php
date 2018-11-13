@@ -5,7 +5,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php session_start(); ?>
+<?php session_start();?>
 <!DOCTYPE HTML>
 <html>
     <?php include_once './DB.php'; ?>
@@ -28,22 +28,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script src="js/custom.js"></script>
         <script src="js/screenfull.js"></script>
         <script>
-            $(function () {
-                $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+$(function () {
+$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
 
-                if (!screenfull.enabled) {
-                    return false;
-                }
-
-
-
-                $('#toggle').click(function () {
-                    screenfull.toggle($('#container')[0]);
-                });
+if (!screenfull.enabled) {
+return false;
+}
 
 
 
-            });
+$('#toggle').click(function () {
+screenfull.toggle($('#container')[0]);
+});
+
+
+
+});
         </script>
 
         <!----->
@@ -52,39 +52,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script src="js/pie-chart.js" type="text/javascript"></script>
         <script type="text/javascript">
 
-            $(document).ready(function () {
-                $('#demo-pie-1').pieChart({
-                    barColor: '#3bb2d0',
-                    trackColor: '#eee',
-                    lineCap: 'round',
-                    lineWidth: 8,
-                    onStep: function (from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                    }
-                });
+       $(document).ready(function () {
+           $('#demo-pie-1').pieChart({
+               barColor: '#3bb2d0',
+               trackColor: '#eee',
+               lineCap: 'round',
+               lineWidth: 8,
+               onStep: function (from, to, percent) {
+                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+               }
+           });
 
-                $('#demo-pie-2').pieChart({
-                    barColor: '#fbb03b',
-                    trackColor: '#eee',
-                    lineCap: 'butt',
-                    lineWidth: 8,
-                    onStep: function (from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                    }
-                });
+           $('#demo-pie-2').pieChart({
+               barColor: '#fbb03b',
+               trackColor: '#eee',
+               lineCap: 'butt',
+               lineWidth: 8,
+               onStep: function (from, to, percent) {
+                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+               }
+           });
 
-                $('#demo-pie-3').pieChart({
-                    barColor: '#ed6498',
-                    trackColor: '#eee',
-                    lineCap: 'square',
-                    lineWidth: 8,
-                    onStep: function (from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                    }
-                });
+           $('#demo-pie-3').pieChart({
+               barColor: '#ed6498',
+               trackColor: '#eee',
+               lineCap: 'square',
+               lineWidth: 8,
+               onStep: function (from, to, percent) {
+                   $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+               }
+           });
 
 
-            });
+       });
 
         </script>
         <!--skycons-icons-->
@@ -95,25 +95,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div id="wrapper">
 
             <!----->
-            <?php include './_tree.php'; ?>
-
+            <?php include './_tree.php';?>
+            
             <div id="page-wrapper" class="gray-bg dashbard-1">
                 <div class="content-main">
 
                     <!--banner-->	
                     <div class="banner">
                         <h2>
-                            <a href="home.php">Home</a>
+                             <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
-                            <span>Dashboard</span>
+                            <span>PERFORMANCE APPRAISAL Review</span>
                         </h2>
                     </div>
                     <!--//banner-->
                     <!--content-->
                     <div class="content-top">
                         <div class="col-md-5 ">
-
-                            <form action="PIFID_objective_setting.php" method="post">
+                            <form action="PIFID_objective_setting_approval.php" method="post">
                                 <input type="hidden" name="PAFID" value="<?= $_GET['id'] ?>" />
                                 <?php
                                 $sql = "SELECT kpi_goal_objective.*,kpi_goal_ratio.goal_ratio,kpi_goal_ratio.precentage FROM kpi_goal_objective
@@ -129,15 +128,15 @@ WHERE kpi_goal_objective.user_role = 'JENGINEER'";
                                         <div class="panel-body form-horizontal">
                                             <form class="form-horizontal">
                                                 <div class="form-group">
-                                                    <label for="textarea" class="control-label col-xs-4">Mid Year Review (Employee)</label> 
+                                                    <label for="textarea" class="control-label col-xs-4">Mid Year Review (Manager) </label> 
                                                     <div class="col-xs-8">
-                                                        <textarea id="textarea" required="" name="<?= $value['id'] ?>_mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
+                                                        <textarea id="textarea" required="" name="<?= $value['id'] ?>_mid_year_comment_manager" cols="40" rows="5" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textarea1" class="control-label col-xs-4">Annual Review (Employee)</label> 
+                                                    <label for="textarea1" class="control-label col-xs-4">Annual Review (Manager)</label> 
                                                     <div class="col-xs-8">
-                                                        <textarea id="textarea1"  required=""  name="<?= $value['id'] ?>_annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
+                                                        <textarea id="textarea1"  required=""  name="<?= $value['id'] ?>_annual_comment_manager" cols="40" rows="5" class="form-control"></textarea>
                                                     </div>
                                                 </div> 
 
@@ -149,20 +148,11 @@ WHERE kpi_goal_objective.user_role = 'JENGINEER'";
                                 ?>
                                 <button name="submit" type="submit" class="btn btn-primary">Submit</button><br>
                             </form>
-
                         </div>
                         <div class="col-md-7 ">
-
-
-
-                            <div id="PAF">
-                               <?php include './PAF.php';?>
-                            </div>
-
-
-
+                            <?php include './PAF.php';?>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix"> </div>
                     </div>
                     <!---->
 
@@ -170,7 +160,7 @@ WHERE kpi_goal_objective.user_role = 'JENGINEER'";
                     <?php
                     include './_footer.php';
                     ?>
-
+                    
                 </div>
                 <div class="clearfix"> </div>
             </div>

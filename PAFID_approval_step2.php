@@ -105,7 +105,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h2>
                             <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
-                            <span>Dashboard</span>
+                            <span>PERFORMANCE APPRAISAL Review</span>
                         </h2>
                     </div>
                     <!--//banner-->
@@ -113,56 +113,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="content-top">
                         <div class="col-md-5 ">
 
-                            <form action="PIFID_objective_setting.php" method="post">
+                            <form action="PAFID_behavioural_competencies_approval.php" method="post">
                                 <input type="hidden" name="PAFID" value="<?= $_GET['id'] ?>" />
-                                <?php
-                                $sql = "SELECT kpi_goal_objective.*,kpi_goal_ratio.goal_ratio,kpi_goal_ratio.precentage FROM kpi_goal_objective
-INNER JOIN kpi_goal_ratio 
-ON kpi_goal_objective.goal_ratio_id = kpi_goal_ratio.id
-WHERE kpi_goal_objective.user_role = 'JENGINEER'";
-                                $data = getData($sql);
-                                foreach ($data as $value) {
-                                    ?>
-                                    <input type="hidden" name="<?= $value['id'] ?>_goal_objective_id" value="<?= $value['id'] ?>" />
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading "><?= $value['goal_ratio'] ?> [<?= $value['point'] ?> %]</div>
-                                        <div class="panel-body form-horizontal">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="textarea" class="control-label col-xs-4">Mid Year Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea" required="" name="<?= $value['id'] ?>_mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="textarea1" class="control-label col-xs-4">Annual Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea1"  required=""  name="<?= $value['id'] ?>_annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div> 
+                                
+                                <h3>BEHAVIOURAL COMPETENCIES</h3>
+                                <table border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>Competency</th>
+                                            <th>Description</th>
+                                            <th>Employee’s Rating (A/B/C/D)</th>
+                                            <th>Manager’s Rating (A/B/C/D)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $sql = " SELECT beh_competency_id AS id,employee_rating,kpi_beh_competency.competency,kpi_beh_competency.description
+                                            FROM kpi_employee_beh_competency
+ INNER JOIN kpi_beh_competency
+ ON kpi_beh_competency.id = kpi_employee_beh_competency.beh_competency_id
+  WHERE PAFID =  '".$_GET['id']."'";
+                                        $data = getData($sql);
+                                        foreach ($data as $value) {
+                                            ?> 
+                                            <tr>
+                                                <td><?= $value['competency'] ?></td>
+                                                <td><?= $value['description'] ?></td>
+                                                <td><?= $value['employee_rating'] ?></td>
+                                                <td><input type="text" name="<?= $value['id'] ?>"/></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
 
-                                        </div>
-                                    </div>
+                                </table>
+                                    <button name="submit" type="submit" class="btn btn-primary">Submit</button><br>
 
-                                    <?php
-                                }
-                                ?>
-                                <button name="submit" type="submit" class="btn btn-primary">Submit</button><br>
                             </form>
 
                         </div>
                         <div class="col-md-7 ">
-
-
-
-                            <div id="PAF">
-                               <?php include './PAF.php';?>
-                            </div>
-
-
-
+                            <?php include './PAF.php'; ?>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="clearfix"> </div>
                     </div>
                     <!---->
 

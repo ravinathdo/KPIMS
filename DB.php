@@ -1,5 +1,5 @@
 <?php
-   
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,7 +24,6 @@ function getDBConnection() {
     }
 }
 
-
 /**
  * 
  * @param type $sql
@@ -39,10 +38,10 @@ function setData($sql, $msgArray) {
     }
     if (mysqli_query($conn, $sql)) {
         $last_id = mysqli_insert_id($conn);
-        if ($last_id>0)
-            echo '<p class="bg-success msg-success">'.$msgArray['msgsuccess'].'<p>';
+        if ($last_id > 0)
+            echo '<p class="bg-success msg-success">' . $msgArray['msgsuccess'] . '<p>';
     } else {
-        echo '<p class="bg-danger msg-error">'.$msgArray['msgerror'].'<p>';
+        echo '<p class="bg-danger msg-error">' . $msgArray['msgerror'] . '<p>';
     }
     mysqli_close($conn);
     return $last_id;
@@ -63,7 +62,6 @@ function getData($sql) {
     }
     mysqli_close($conn);
 }
-
 
 function setUpdate($sql, $MSG) {
     $flag = TRUE;
@@ -99,6 +97,5 @@ function setDelete($sql) {
 
     mysqli_close($conn);
 }
-
 
 ?>

@@ -111,58 +111,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!--//banner-->
                     <!--content-->
                     <div class="content-top">
-                        <div class="col-md-5 ">
+                        <div class="col-md-2 ">4</div>
+                        <div class="col-md-8 ">
 
-                            <form action="PIFID_objective_setting.php" method="post">
-                                <input type="hidden" name="PAFID" value="<?= $_GET['id'] ?>" />
-                                <?php
-                                $sql = "SELECT kpi_goal_objective.*,kpi_goal_ratio.goal_ratio,kpi_goal_ratio.precentage FROM kpi_goal_objective
-INNER JOIN kpi_goal_ratio 
-ON kpi_goal_objective.goal_ratio_id = kpi_goal_ratio.id
-WHERE kpi_goal_objective.user_role = 'JENGINEER'";
-                                $data = getData($sql);
-                                foreach ($data as $value) {
-                                    ?>
-                                    <input type="hidden" name="<?= $value['id'] ?>_goal_objective_id" value="<?= $value['id'] ?>" />
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading "><?= $value['goal_ratio'] ?> [<?= $value['point'] ?> %]</div>
-                                        <div class="panel-body form-horizontal">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="textarea" class="control-label col-xs-4">Mid Year Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea" required="" name="<?= $value['id'] ?>_mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="textarea1" class="control-label col-xs-4">Annual Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea1"  required=""  name="<?= $value['id'] ?>_annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div> 
 
-                                        </div>
-                                    </div>
 
-                                    <?php
-                                }
-                                ?>
-                                <button name="submit" type="submit" class="btn btn-primary">Submit</button><br>
-                            </form>
+                            <?php
+                            if (isset($_POST['submitComp'])) {
+                                $sql = "UPDATE kpi_performance_appraisal SET status_code = 'COMPLETED',review_user_id='" . $_SESSION['userbean']['id'] . "' WHERE PAFID =  '" . $_POST['pafid'] . "'";
+//                                echo $sql;
+                                setUpdate($sql, TRUE);
+                            }
+                            ?>
+                            <?php include './PAF.php'; ?>
 
                         </div>
-                        <div class="col-md-7 ">
-
-
-
-                            <div id="PAF">
-                               <?php include './PAF.php';?>
-                            </div>
-
-
-
-                        </div>
-                        <div class="clearfix"></div>
+                        <div class="col-md-2 ">4</div>
+                        <div class="clearfix"> </div>
                     </div>
                     <!---->
 

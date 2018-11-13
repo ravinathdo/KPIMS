@@ -111,65 +111,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!--//banner-->
                     <!--content-->
                     <div class="content-top">
-                        <div class="col-md-5 ">
+                        <div class="col-md-4 ">
+                            <?php
+                            if (isset($_POST['submit'])) {
 
-                            <form action="PIFID_objective_setting.php" method="post">
-                                <input type="hidden" name="PAFID" value="<?= $_GET['id'] ?>" />
-                                <?php
-                                $sql = "SELECT kpi_goal_objective.*,kpi_goal_ratio.goal_ratio,kpi_goal_ratio.precentage FROM kpi_goal_objective
-INNER JOIN kpi_goal_ratio 
-ON kpi_goal_objective.goal_ratio_id = kpi_goal_ratio.id
-WHERE kpi_goal_objective.user_role = 'JENGINEER'";
+                                $PAFID = $_POST['PAFID'];
+                                $employee_id = $_SESSION['userbean']['id'];
+
+                                $sql = "SELECT * FROM kpi_goal_objective WHERE user_role = 'JENGINEER' ";
                                 $data = getData($sql);
                                 foreach ($data as $value) {
-                                    ?>
-                                    <input type="hidden" name="<?= $value['id'] ?>_goal_objective_id" value="<?= $value['id'] ?>" />
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading "><?= $value['goal_ratio'] ?> [<?= $value['point'] ?> %]</div>
-                                        <div class="panel-body form-horizontal">
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="textarea" class="control-label col-xs-4">Mid Year Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea" required="" name="<?= $value['id'] ?>_mid_year_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="textarea1" class="control-label col-xs-4">Annual Review (Employee)</label> 
-                                                    <div class="col-xs-8">
-                                                        <textarea id="textarea1"  required=""  name="<?= $value['id'] ?>_annual_comment_employee" cols="40" rows="5" class="form-control"></textarea>
-                                                    </div>
-                                                </div> 
-
-                                        </div>
-                                    </div>
-
-                                    <?php
+                                    $goal_objective_id = $value['id'] . '_goal_objective_id'; // POST NAME
+                                    $mid_year_comment_employee = $value['id'] . '_mid_year_comment_employee'; // POST NAME
+                                    $annual_comment_employee = $value['id'] . '_annual_comment_employee'; // POST NAME
+//                            $sql = "INSERT INTO kpi_goal_employee (PAFID,goal_objective_id,employee_id,mid_year_comment_employee,annual_comment_employee)
+//VALUES ('$PAFID','$employee_id','$goal_objective_id','$mid_year_comment_employee','$annual_comment_employee')";
+//                            
+                                    $sql = "INSERT INTO kpi_goal_employee (PAFID,goal_objective_id,employee_id,mid_year_comment_employee,annual_comment_employee)
+VALUES ('$PAFID','" . $_POST[$goal_objective_id] . "','$employee_id','" . $_POST[$mid_year_comment_employee] . "','" . $_POST[$annual_comment_employee] . "')";
+                                    echo $sql;
+                                    $msgArray = array('msgsuccess' => '', 'msgerror' => '');
+                                    setData($sql, $msgArray);
                                 }
-                                ?>
-                                <button name="submit" type="submit" class="btn btn-primary">Submit</button><br>
-                            </form>
-
+                                echo '<span class="mando-msg">OBJECTIVE SETTING created successfully</span>';
+                            }
+                            ?>
                         </div>
-                        <div class="col-md-7 ">
-
-
-
-                            <div id="PAF">
-                               <?php include './PAF.php';?>
-                            </div>
-
-
-
-                        </div>
-                        <div class="clearfix"></div>
+                        <div class="col-md-8 ">8</div>
+                        <div class="clearfix"> </div>
                     </div>
                     <!---->
 
                     <!---->
-                    <?php
-                    include './_footer.php';
-                    ?>
+<?php
+include './_footer.php';
+?>
 
                 </div>
                 <div class="clearfix"> </div>

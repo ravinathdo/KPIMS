@@ -93,7 +93,7 @@ VALUES ('" . $_POST['first_name'] . "',
              '" . $_POST['last_name'] . "',
              '" . $_POST['empno'] . "',
              '" . $_POST['nic'] . "',
-             '" . $pword . "',
+             '" . sha1($pword) . "',
              '" . $_POST['user_role'] . "',
              'ACTIVE',
              '1');";
@@ -112,13 +112,13 @@ VALUES ('" . $_POST['first_name'] . "',
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label hor-form">Employee Number <span class="mando-msg">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="text" required="" name="empno" class="form-control" id="inputEmail3" placeholder="Employee Number">
+                                            <input type="text" required="" name="empno" class="form-control" id="inputEmail3" placeholder="Employee Number" pattern="^[0-9]{1,20}$" title="Numbers Only" >
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label hor-form">First Name <span class="mando-msg">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="text"  required=""  name="first_name" class="form-control" id="inputEmail3" placeholder="First Name">
+                                            <input type="text"  required=""  name="first_name" class="form-control" id="inputEmail3" placeholder="First Name"  pattern="^[a-zA-Z\s]{1,50}$" title="Only letters are allowed, max 50" >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -130,7 +130,7 @@ VALUES ('" . $_POST['first_name'] . "',
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label hor-form">NIC <span class="mando-msg">*</span></label>
                                         <div class="col-sm-10">
-                                            <input type="text"  required=""  name="nic" class="form-control" id="inputEmail3" placeholder="NIC">
+                                            <input type="text"  required=""  name="nic" class="form-control" id="inputEmail3" placeholder="NIC" pattern="(?:((^\d{9})(v$))|((^\d{9})(x$))|(^\d{12}$))" title="9 digit with 'x' or 'v', 12 digit modern NIC" >
                                         </div>
                                     </div>
                                     <div class="form-group">
