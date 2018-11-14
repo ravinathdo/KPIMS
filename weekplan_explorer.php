@@ -92,6 +92,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         case 'PM':
                                             $sql = "SELECT * FROM kpi_week_plan WHERE status_code = 'PENDING'";
                                             break;
+                                        case 'HIT':
+                                            $sql = "SELECT * FROM kpi_week_plan ";
+                                            break;
                                         case 'JENGINEER':
                                             $sql = "SELECT * FROM kpi_week_plan WHERE status_code = 'ACTIVE' AND assign_to = '" . $_SESSION['userbean']['id'] . "'";
                                             break;

@@ -105,74 +105,64 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h2>
                             <a href="home.php">Home</a>
                             <i class="fa fa-angle-right"></i>
-                            <span>Skill Setup</span>
+                            <span>Skill Approval</span>
                         </h2>
                     </div>
                     <!--//banner-->
                     <!--content-->
+                    <div class="content-top">
+                        <div class="col-md-4 ">
+                            <form class="form-horizontal" action="hit_skill_explorer.php" method="post">
+                                <div class="form-group">
+                                    <label for="select" class="control-label col-xs-4">User</label> 
+                                    <div class="col-xs-8">
+                                        <select id="select" name="user_id" required="" class="select form-control">
+                                            <option value="">--select--</option>
 
-
-                    <form class="form-horizontal" action="user_skill_setup_step2.php" method="post">
-
-                        <div class="content-top">
-                            <div class="clearfix"> </div>
-                        </div>
-
-                        <div class="content-top">
-                            <div class="col-md-12 ">
-                                <div class="row">
-                                    <div class="col-md-3"> Year Month <input id="text" name="month_year" type="month" required="" class="form-control">
-                                    <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button></div>
-                                    <div class="col-md-9">
-
-                                        <table  style="width: 100%" class="table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Expert Level</th>
-                                                    <th>Lable</th>
-                                                    <th>Description</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $sqlLevel = "SELECT * FROM kpi_skill_level";
-                                                $dataLevel = getData($sqlLevel);
-                                                foreach ($dataLevel as $value) {
-                                                    ?>
-                                                    <tr>
-                                                        <td><?= $value['expert_level']?></td>
-                                                        <td><?= $value['lable']?></td>
-                                                        <td><?= $value['description']?></td>
-                                                    </tr>
-                                                    <?php
-                                                }
+                                            <?php
+                                            $sqlUser = "SELECT kpi_user.id,kpi_user.first_name,kpi_user.last_name,kpi_user.empno,kpi_user_role.description,kpi_user_role.user_role FROM kpi_user
+INNER JOIN kpi_user_role
+ON kpi_user.user_role = kpi_user_role.user_role ";
+                                            $dataUser = getData($sqlUser);
+                                            foreach ($dataUser as $value) {
                                                 ?>
-                                            </tbody>
-                                        </table>
-
-
-                                        <br><span class="mando-msg">Red color Fields are mandatory</span>
+                                                <option value="<?= $value['id'] ?>"><?= $value['first_name'] ?> <?= $value['last_name'] ?> [<?= $value['empno'] ?>] <?= $value['user_role'] ?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
-                                <br>
-                                <?php
-                                /*
-                                  SELECT kpi_skill.*,kpi_skill_category.skill_category_description FROM kpi_skill
-                                  INNER JOIN kpi_skill_category
-                                  ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id
-                                 */
+                                <div class="form-group">
+                                    <label for="text" class="control-label col-xs-4">Month Year</label> 
+                                    <div class="col-xs-8">
+                                        <input id="text" name="month_year" required="" type="month" class="form-control">
+                                    </div>
+                                </div> 
+                                <div class="form-group row">
+                                    <div class="col-xs-offset-4 col-xs-8">
+                                        <button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8">
 
-                                $sql = "SELECT kpi_skill.*,kpi_skill_category.skill_category_description FROM kpi_skill
-INNER JOIN kpi_skill_category
-ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id";
+                            <?php
+                            if (isset($_POST['btnSubmit'])) {
+
+                                $sql = "SELECT kpi_skill.*,kpi_skill_category.skill_category_description,kpi_skill_matrix.score,kpi_skill_matrix.status_code,kpi_skill_matrix.id AS matid FROM kpi_skill
+INNER JOIN kpi_skill_matrix ON kpi_skill_matrix.skill_id = kpi_skill.skill_id
+INNER JOIN kpi_skill_category ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id
+WHERE kpi_skill_matrix.month_year = '" . $_POST['month_year'] . "' AND employee_id = '" . $_POST['user_id'] . "' ";
                                 ?>
                                 <table id="example" class="display" cellspacing="0" width="100%" >
                                     <thead>
                                         <tr>
                                             <th>Category</th>
                                             <th>Skill</th>
+                                            <th>Status</th>
                                             <th>Score</th>
-                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -184,8 +174,24 @@ ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id";
                                             <tr>
                                                 <td><?= $value['skill_category_description'] ?></td>
                                                 <td><?= $value['skill_description'] ?></td>
-                                                <td style="width: 15%"><input id="text" name="<?= $value['skill_id'] ?>" <?= $value['note_html'] ?> type="text" <?= $value['note_css'] ?>></td>
-                                                <td></td>
+                                                <td><?= $value['status_code'] ?></td>
+                                                <td >
+                                                    <?php if ($value['status_code'] == 'ACTIVE') { ?>
+                                                        <form action="user_skill_setup_update.php" method="post"> 
+                                                            <input type="hidden" value="<?= $value['matid']; ?>" name="id"/>
+                                                            <input type="hidden" value="<?= $value['skill_id']; ?>" name="fieldName"/>
+                                                            <input id="text" value="<?= $value['score'] ?>" name="<?= $value['skill_id'] ?>" <?= $value['note_html'] ?> type="text" <?= $value['note_css'] ?>>
+                                                            <button style="float: right" name="btnSubmit" type="submit" class="btn btn-primary">Update</button>
+                                                            <a   href="user_skill_setup_remove.php?id=<?= $value['matid'] ?>">remove</a>
+                                                        </form>
+                                                        <?php
+                                                    } else {
+                                                        echo $value['score'];
+                                                    }
+                                                    ?>    
+
+                                                </td>
+
                                                 <td></td>
 
                                             </tr>
@@ -198,14 +204,19 @@ ON kpi_skill.skill_category_id = kpi_skill_category.skill_category_id";
                                 <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
                                 <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
                                 <script type="text/javascript">
-            $(document).ready(function () {
-                $('#example').DataTable({paging: false});
-            });
+                $(document).ready(function () {
+                    $('#example').DataTable({paging: false});
+                });
                                 </script>
-                            </div>
-                            <div class="clearfix"> </div>
+
+
+                            <?php } ?>
+
+
+
                         </div>
-                    </form>
+                        <div class="clearfix"> </div>
+                    </div>
                     <!---->
 
                     <!---->

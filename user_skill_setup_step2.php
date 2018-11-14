@@ -116,9 +116,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php
                             if (isset($_POST['btnSubmit'])) {
                                 $month_year = (string)$_POST['month_year'];
-                                
-                                
-                                
                                 for ($index = 1; $index <= 13; $index++) {
                                     $field_name =  $index;
                                     if ($_POST[$field_name] != '') {
@@ -127,8 +124,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         setData($sql, $msgArray);
                                     }
                                 }
-                                
-                                echo '<p class="bg-success msg-success">'.$month_year .'Skill created successfully</p>';
+                                echo '<p class="bg-success msg-success">'.$month_year .' Skill created successfully</p>';
                             }
                             ?>
 

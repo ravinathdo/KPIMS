@@ -99,7 +99,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             <div id="page-wrapper" class="gray-bg dashbard-1">
                 <div class="content-main">
-
                     <!--banner-->	
                     <div class="banner">
                         <h2>

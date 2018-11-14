@@ -118,8 +118,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 $employee_id = $_SESSION['userbean']['id'];
 
                                 $sql = "SELECT * FROM kpi_beh_competency";
+                               
                                 $data = getData($sql);
-
+                                
                                 foreach ($data as $value) {
                                     $id = $value['id'];
                                     $sqlIn = " INSERT INTO kpi_employee_beh_competency (PAFID,beh_competency_id,employee_rating,user_id)

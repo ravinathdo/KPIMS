@@ -113,7 +113,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="content-top">
                         <div class="col-md-5 ">
 
-                            <form action="PAFID_behavioural_competencies_approval.php" method="post">
+                            <form action="PAFID_behavioural_competencies.php" method="post">
                                 <input type="hidden" name="PAFID" value="<?= $_GET['id'] ?>" />
 
                                 <h3>BEHAVIOURAL COMPETENCIES</h3>

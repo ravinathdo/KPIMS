@@ -97,7 +97,6 @@ include './DB.php';
                             </div>
                             <div class="col-md-10 ">
 
-
                                 <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
                                 <script src="js/highcharts.js" type="text/javascript"></script>
@@ -111,71 +110,108 @@ GROUP BY kpi_skill_matrix.skill_id";
     $data0 = getData($sqlChart);
     ?>
 
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Skill Matrix Summary'
-                },
-                subtitle: {
-                    text: 'Source: KPIMS'
-                },
-                xAxis: {
-                    type: 'category',
-                    labels: {
-                        rotation: -45,
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
-                    }
-                },
-                yAxis: {
-                    min: 0,
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'column'
+                    },
                     title: {
-                        text: 'Population (millions)'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y} millions</b>'
-                },
-                series: [{
-                        name: 'Population',
-                        data: [<?php
-    if ($data0)
-        foreach ($data0 as $value) {
-            ?>['<?php echo $value['skill_description'];?>', <?php echo $value['score'];?>],<?php
-        }
-    ?>
-                        ],
-                        dataLabels: {
-                            enabled: true,
-                            rotation: -90,
-                            color: '#FFFFFF',
-                            align: 'right',
-                            format: '{point.y:.1f}', // one decimal
-                            y: 10, // 10 pixels down from the top
+                        text: 'Skill Matrix Summary'
+                    },
+                    subtitle: {
+                        text: 'Source: KPIMS'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
                             style: {
                                 fontSize: '13px',
                                 fontFamily: 'Verdana, sans-serif'
                             }
                         }
-                    }]
-            });
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Population (millions)'
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        pointFormat: 'Population in 2017: <b>{point.y} millions</b>'
+                    },
+                    series: [{
+                            name: 'Population',
+                            data: [<?php
+    if ($data0)
+        foreach ($data0 as $value) {
+            ?>['<?php echo $value['skill_description']; ?>', <?php echo $value['score']; ?>],<?php
+        }
+    ?>
+                            ],
+                            dataLabels: {
+                                enabled: true,
+                                rotation: -90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}', // one decimal
+                                y: 10, // 10 pixels down from the top
+                                style: {
+                                    fontSize: '13px',
+                                    fontFamily: 'Verdana, sans-serif'
+                                }
+                            }
+                        }]
+                });
                                 </script>
-
-
-
-
 
                             </div>
                             <div class="clearfix"> </div>
                         </div>
                     <?php } ?>
+
+
+
+                    <?php if ($_SESSION['userbean']['user_role'] == 'HIT') { ?> 
+                    
+                    <div class="content-top">
+                        <div class="col-md-12">
+                            <table border="0" style="width: 100%;padding: 5px;text-align: center">
+                                <tbody>
+                                        <tr>
+                                            <td><a href="home.php"><i class="fa fa-dashboard nav_icon" style="font-size: 50px"></i>
+                                                <br>Dash Board</a></td>
+                                            <td><a href="hit_skill_explorer.php"><i class="fa fa-archive nav_icon" style="font-size: 50px"></i>
+                                                <br>Skill Explorer</a></td>
+                                            <td><a href="weekplan_explorer.php?flag=<?= $_SESSION['userbean']['user_role'] ?>"><i class="fa fa-steam nav_icon" style="font-size: 50px"></i>
+                                                <br>Weekly Plan Explorer</a></td>
+                                            <td><a href="PAFID_approval_explorer.php"><i class="fa fa-bookmark nav_icon" style="font-size: 50px"></i>
+                                                <br>PAF Approval</a></td>
+                                            <td><a href="hit_PAFID_employee_view.php"><i class="fa fa-newspaper-o nav_icon" style="font-size: 50px"></i>
+                                                <br>Employee PAF Search</a></td>
+                                            <td><a href="report_skill_ranking.php"><i class="fa fa-sticky-note nav_icon" style="font-size: 50px"></i>
+                                                <br>Reports Skill Ranking</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    
+                    <?php } ?>
+
+
 
                     <div class="content-top">
                         <div class="col-md-4 ">

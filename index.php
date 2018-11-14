@@ -34,7 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     $sql = "SELECT kpi_user.*,kpi_user_role.access_level FROM kpi_user INNER JOIN kpi_user_role "
                             . " ON kpi_user_role.user_role =  kpi_user.user_role "
                             . " WHERE kpi_user.empno = '" . $_POST['empno'] . "' AND kpi_user.pword = '" . sha1($pword) . "' AND kpi_user.status_code = 'ACTIVE'";
-                    echo $sql;
+//                    echo $sql;
                     $result = getData($sql);
                     if ($result != null) {
                         foreach ($result as $value) {
