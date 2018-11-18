@@ -9,6 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
     <?php include_once './DB.php'; ?>
+    <?php include_once './util.php'; ?>
     <head>
         <title>KPIMS</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,8 +119,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     . " ON kpi_week_plan.user_created = kpi_user.id WHERE kpi_week_plan.id = $weekplan_id ";
 //                            echo $sql;
                             $result = getData($sql);
+                            $skill_id = '';
+                            $dateTime = '';
+                            $duration = '';
                             foreach ($result as $value) {
+                                                            $skill_id = $value['skill_id'];
+                                                            $dateTime = $value['plan_date'];
+                                                            $duration = $value['estimated_duration'];
+
                                 ?>
+                            
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label for="from_date" class="control-label col-xs-4">Task</label> 
@@ -172,6 +181,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="panel-body">
                                     <form class="form-horizontal" action="pm_weekplan_assign_action.php" method="post">
                                         <div class="form-group">
+                                            <label for="select" class="control-label col-xs-4">Suggesting</label> 
+                                            <div class="col-xs-8">
+                                                <?php
+                                                                            findBestEmpAlgo($skill_id, $dateTime, $duration);
+                                                ?>
+                                                user 1,user 2,user 3
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="select" class="control-label col-xs-4">Select Employee</label> 
                                             <div class="col-xs-8">
                                                 <?php
@@ -191,6 +209,7 @@ WHERE kpi_user.user_role != 'PM' AND kpi_user.user_role != 'HIT'
                                                                                                     } ?>
                                                   
                                                 </select>
+                                               
                                             </div>
                                         </div> 
                                         <div class="form-group row">

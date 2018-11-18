@@ -122,12 +122,14 @@ screenfull.toggle($('#container')[0]);
              `estimated_duration`,
              `remark`,
              `status_code`,
+             `skill_id`,
              `user_created`)
 VALUES ('" . $_POST['plan_date'] . "',
         '" . $_POST['task'] . "',
         '$estimated_duration',
         '" . $_POST['remark'] . "',
         'PENDING',
+        '" . $_POST['skill_id'] . "',
         '" . $_SESSION['userbean']['id'] . "');";
 //                                echo $sql;
                                 $msgArray = array('msgsuccess' => 'New week plan request created', 'msgerror' => 'Invalid input or duplicate entry');
@@ -155,6 +157,22 @@ VALUES ('" . $_POST['plan_date'] . "',
                                     </div>
                                     <div class="col-xs-4">
                                         To   <input id="estimated_duration" name="to_time" type="time" class="form-control">
+                                    </div>
+                                </div>
+                                  <div class="form-group">
+                                    <label for="task" class="control-label col-xs-4">Skill Area</label> 
+                                    <div class="col-xs-8">
+                                        <select name="skill_id" class="form-control">
+                                            <option value="">--select skill--</option>
+                                            <?php  
+                                            $sqlSkill = "SELECT * FROM kpi_skill ORDER BY skill_description ASC";
+                                            $dataSkill = getData($sqlSkill);
+                                            foreach ($dataSkill as $value) {
+                                                ?> <option value="<?= $value['skill_id'] ?>"> <?= $value['skill_description'] ?> </option> <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group">
