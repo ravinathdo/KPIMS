@@ -129,11 +129,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 //                            
                                     $sql = "INSERT INTO kpi_goal_employee (PAFID,goal_objective_id,employee_id,mid_year_comment_employee,annual_comment_employee)
 VALUES ('$PAFID','" . $_POST[$goal_objective_id] . "','$employee_id','" . $_POST[$mid_year_comment_employee] . "','" . $_POST[$annual_comment_employee] . "')";
-                                    echo $sql;
+//                                    echo $sql;
                                     $msgArray = array('msgsuccess' => '', 'msgerror' => '');
                                     setData($sql, $msgArray);
                                 }
-                                echo '<span class="mando-msg">OBJECTIVE SETTING created successfully</span>';
+                                echo '<span class="bg-success msg-success">OBJECTIVE SETTING created successfully</span>';
                             }
                             ?>
                         </div>

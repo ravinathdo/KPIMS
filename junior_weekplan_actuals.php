@@ -110,6 +110,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="text2" class="control-label col-xs-4">Assign To</label> 
+                                        <div class="col-xs-8"><?php 
+                                        $sqlAssign = "SELECT * FROM kpi_user WHERE id = '".$value['assign_to']."'";
+                                        $data = getData($sqlAssign);
+                                        if($data)
+                                        foreach ($data as $valuex) {
+                                            ?>  <?= $valuex['first_name']; ?>[<?= $valuex['empno']; ?>]<?php
+                                        }
+                                        ?>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="text3" class="control-label col-xs-4">Remark</label> 
                                         <div class="col-xs-8">
                                             <?= $value['remark']; ?>
@@ -149,7 +162,7 @@ VALUES ('" . $_POST['weekplan_id'] . "',
                                 ?>
                                 <div class="panel-heading ">Actuals</div>
                                 <div class="panel-body">
-                                    <?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER') { ?> 
+                                    <?php if ($_SESSION['userbean']['user_role'] == 'JENGINEER' || $_SESSION['userbean']['user_role'] == 'ENGINEER'  || $_SESSION['userbean']['user_role'] == 'SMANAGER' || $_SESSION['userbean']['user_role'] == 'TEAMLEAD') { ?> 
                                         <form class="form-horizontal" action="junior_weekplan_actuals.php?weekplan_id=<?= $_GET['weekplan_id'] ?>" method="post">
                                             <input id="actual" name="weekplan_id" type="hidden" class="form-control" value="<?= $_GET['weekplan_id'] ?>">
                                             <div class="form-group">

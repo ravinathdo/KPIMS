@@ -18,6 +18,13 @@
                 <li>
                     <a href="junior_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Weekly Plan Explorer</span> </a>
                 </li>
+                <li>
+                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Week Plan Request</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="smanager_weekplan_request.php" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>New Request</a></li>
+                        <li><a href="smanager_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Request Explorer</a></li>
+                    </ul>
+                </li>
                 <li><a href="user_skill_setup.php" class=" hvr-bounce-to-right"><i class="fa fa-graduation-cap  nav_icon"></i>Skill Setup</a></li>
                 <li><a href="user_skill_setup_view.php" class=" hvr-bounce-to-right"><i class="fa fa-eye nav_icon"></i>Skill View</a></li>
                 <li>

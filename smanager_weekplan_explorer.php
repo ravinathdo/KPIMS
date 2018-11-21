@@ -125,7 +125,7 @@ screenfull.toggle($('#container')[0]);
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql ="SELECT * FROM kpi_week_plan WHERE user_created = 4";
+                                    $sql ="SELECT * FROM kpi_week_plan WHERE user_created = '".$_SESSION['userbean']['id']."'";
                                     $resultx = getData($sql);
                                     if ($resultx != FALSE) {
                                         while ($row = mysqli_fetch_assoc($resultx)) {
@@ -136,7 +136,7 @@ screenfull.toggle($('#container')[0]);
                                                 <td><?= $row['task']; ?></td>
                                                 <td><?= $row['estimated_duration']; ?></td>
                                                 <td><?= $row['status_code']; ?></td>
-                                                <td><a href="admin_update_item.php?id=<?= $row['id']; ?>">view</a></td>
+                                                <td><a href="pm_weekplan_assign.php?weekplan_id=<?= $row['id']; ?>">view</a></td>
                                             </tr>
                                             <?php
                                         }

@@ -65,47 +65,88 @@ function changeall($string, $char, $start = 0, $end = 0) {
     return $string;
 }
 
-//Algo Codes
+/**
+ * An algorithm that works on finding best employee for assign a task 
+ * considering different kind of skill aspect 
+ * @param type $skill_id
+ * @param type $dateTime
+ * @param type $duration
+ */
 function findBestEmpAlgo($skill_id, $dateTime, $duration) {
-    // Function to convert an arabic number ($num) to a roman numeral.  $num must be between 
-    $num = 100;
-    $rnum = 3;
-if ($num < 0 || $num > 9999) {
-        return -1;
-    } // out of range 
-
-    $r_ones = array(1 => "I", 2 => "II", 3 => "III", 4 => "IV", 5 => "V", 6 => "VI", 7 => "VII", 8 => "VIII",
-        9 => "IX");
-    $r_tens = array(1 => "X", 2 => "XX", 3 => "XXX", 4 => "XL", 5 => "L", 6 => "LX", 7 => "LXX",
-        8 => "LXXX", 9 => "XC");
-    $r_hund = array(1 => "C", 2 => "CC", 3 => "CCC", 4 => "CD", 5 => "D", 6 => "DC", 7 => "DCC",
-        8 => "DCCC", 9 => "CM");
-    $r_thou = array(1 => "M", 2 => "MM", 3 => "MMM", 4 => "MMMM", 5 => "MMMMM", 6 => "MMMMMM",
-        7 => "MMMMMMM", 8 => "MMMMMMMM", 9 => "MMMMMMMMM");
-
-    $ones = $num % 10;
-    $tens = ($num - $ones) % 100;
-    $hundreds = ($num - $tens - $ones) % 1000;
-    $thou = ($num - $hundreds - $tens - $ones) % 10000;
-
-    $tens = $tens / 10;
-    $hundreds = $hundreds / 100;
-    $thou = $thou / 1000;
-
-    if ($thou) {
-        $rnum .= $r_thou[$thou];
+    //get free employees 
+    $sqlFreeEmp = "SELECT DISTINCT kpi_week_plan.assign_to,kpi_user.empno,kpi_user.first_name,kpi_user.last_name FROM kpi_week_plan
+INNER JOIN kpi_user
+ON kpi_user.id = kpi_week_plan.id  WHERE kpi_week_plan.plan_date != '2018-10-25'";
+    $resFreeEmp = getData($sqlFreeEmp); // List1
+    //skill count
+    $sqlSkillCount = "SELECT SUM(score) AS ttlscore FROM kpi_skill_matrix WHERE skill_id = 7";
+    $resSkillCount = getData($sqlSkillCount);
+    $skillCount = 0;
+    foreach ($resSkillCount as $value) {
+        $skillCount = $value['ttlscore'];
     }
-    if ($hundreds) {
-        $rnum .= $r_hund[$hundreds];
-    }
-    if ($tens) {
-        $rnum .= $r_tens[$tens];
-    }
-    if ($ones) {
-        $rnum .= $r_ones[$ones];
+//    echo $skillCount;
+
+    //Skilled employee array
+    $sqlSkilledEmp = "SELECT SUM(score) AS score,employee_id FROM kpi_skill_matrix WHERE skill_id = 7
+GROUP BY employee_id 
+ORDER BY employee_id ";
+    $resSkilledEmp = getData($sqlSkilledEmp); // array of skilled emp
+
+    $empArray = array();
+    foreach ($resSkilledEmp as $value) {
+        array_push($empArray, $value['employee_id']);
     }
 
-    return $rnum;
+    echo '<ul>';
+
+    foreach ($resFreeEmp as $value) {
+        $binarySearch = binarySearch($empArray, $value['assign_to']);
+        if ($binarySearch) {
+            $val = getSkillHelth($resSkilledEmp, $value['assign_to'], $skillCount);
+            echo '<li>['.$value['empno'].'] '.$value['first_name'].' ('.round($val,2).'%) </li>';
+        }
+    }
+
+    echo '</ul>';
+}
+
+function getSkillHelth($resSkilledEmp,$user_id,$skillCount){
+    $val =0;
+    foreach ($resSkilledEmp as $value) {
+        if($value['employee_id']==$user_id){
+         $val =   ($value['score'] / $skillCount)*100;
+        }
+    }
+    return $val;
+}
+
+function binarySearch(Array $arr, $x) {
+    // check for empty array 
+    if (count($arr) === 0)
+        return false;
+    $low = 0;
+    $high = count($arr) - 1;
+
+    while ($low <= $high) {
+        // compute middle index 
+        $mid = floor(($low + $high) / 2);
+
+        // element found at mid 
+        if ($arr[$mid] == $x) {
+            return true;
+        }
+
+        if ($x < $arr[$mid]) {
+            // search the left side of the array 
+            $high = $mid - 1;
+        } else {
+            // search the right side of the array 
+            $low = $mid + 1;
+        }
+    }
+    // If we reach here element x doesnt exist 
+    return false;
 }
 
 ?>

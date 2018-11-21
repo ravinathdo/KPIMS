@@ -160,6 +160,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                             <?= $value['first_name']; ?>[<?= $value['empno']; ?>]
                                         </div>
                                     </div>
+                                     <div class="form-group">
+                                        <label for="text2" class="control-label col-xs-4">Assign To</label> 
+                                        <div class="col-xs-8"><?php 
+                                        $sqlAssign = "SELECT * FROM kpi_user WHERE id = '".$value['assign_to']."'";
+                                        $data = getData($sqlAssign);
+                                        if($data)
+                                        foreach ($data as $valuex) {
+                                            ?>  <?= $valuex['first_name']; ?>[<?= $valuex['empno']; ?>]<?php
+                                        }
+                                        ?>
+                                           
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="text3" class="control-label col-xs-4">Remark</label> 
                                         <div class="col-xs-8">
@@ -176,7 +189,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             ?>
                         </div>
                         <div class="col-md-8 ">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default" <?php if($value['status_code']!='PENDING'){ ?>  style="display: none" <?php } ?> >
                                 <div class="panel-heading ">Assign User</div>
                                 <div class="panel-body">
                                     <form class="form-horizontal" action="pm_weekplan_assign_action.php" method="post">
@@ -186,7 +199,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <?php
                                                                             findBestEmpAlgo($skill_id, $dateTime, $duration);
                                                 ?>
-                                                user 1,user 2,user 3
+                                               
                                             </div>
                                         </div>
                                         <div class="form-group">

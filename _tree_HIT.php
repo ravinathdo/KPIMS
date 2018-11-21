@@ -9,6 +9,13 @@
                     <a href="home.php" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
                 </li>
                 <li>
+                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Week Plan Request</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="smanager_weekplan_request.php" class=" hvr-bounce-to-right"> <i class="fa fa-area-chart nav_icon"></i>New Request</a></li>
+                        <li><a href="smanager_weekplan_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-map-marker nav_icon"></i>Request Explorer</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="hit_skill_explorer.php" class=" hvr-bounce-to-right"><i class="fa fa-archive nav_icon "></i><span class="nav-label">Skill Explorer</span> </a>
                 </li>
                 <li>

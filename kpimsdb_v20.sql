@@ -47,7 +47,7 @@ CREATE TABLE `kpi_employee_beh_competency` (
 
 /*Data for the table `kpi_employee_beh_competency` */
 
-insert  into `kpi_employee_beh_competency`(`PAFID`,`beh_competency_id`,`employee_rating`,`manager_rating`,`user_id`,`review_user_id`) values (2,1,'0',8,3,2),(2,2,'h',5,3,2),(2,3,'h',4,3,2),(2,4,'j',5,3,2),(2,5,'j',8,3,2),(2,6,'j',7,3,2),(2,7,'k',5,3,2);
+insert  into `kpi_employee_beh_competency`(`PAFID`,`beh_competency_id`,`employee_rating`,`manager_rating`,`user_id`,`review_user_id`) values (5,1,'a',NULL,3,NULL),(5,2,'b',NULL,3,NULL),(5,3,'c',NULL,3,NULL),(5,4,'d',NULL,3,NULL),(5,5,'e',NULL,3,NULL),(5,6,'f',NULL,3,NULL),(5,7,'g',NULL,3,NULL);
 
 /*Table structure for table `kpi_goal_employee` */
 
@@ -136,11 +136,11 @@ CREATE TABLE `kpi_performance_appraisal` (
   `annual_review_comment` varchar(20) DEFAULT NULL,
   `review_user_id` int(5) DEFAULT NULL,
   PRIMARY KEY (`PAFID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_performance_appraisal` */
 
-insert  into `kpi_performance_appraisal`(`PAFID`,`month_year`,`user_id`,`date_created`,`status_code`,`objective_setting_comment`,`mid_year_review_comment`,`annual_review_comment`,`review_user_id`) values (1,NULL,3,'2018-11-12 22:56:52','COMPLETED',NULL,NULL,NULL,2),(2,'2018-11',3,'2018-11-12 22:57:33','COMPLETED',NULL,NULL,NULL,2),(3,'2018-11',3,'2018-11-12 22:57:58','ACTIVE',NULL,NULL,NULL,NULL),(4,'2018-11',3,'2018-11-12 22:58:34','ACTIVE',NULL,NULL,NULL,NULL);
+insert  into `kpi_performance_appraisal`(`PAFID`,`month_year`,`user_id`,`date_created`,`status_code`,`objective_setting_comment`,`mid_year_review_comment`,`annual_review_comment`,`review_user_id`) values (1,NULL,3,'2018-11-12 22:56:52','COMPLETED',NULL,NULL,NULL,2),(2,'2018-11',3,'2018-11-12 22:57:33','COMPLETED',NULL,NULL,NULL,2),(3,'2018-11',3,'2018-11-12 22:57:58','ACTIVE',NULL,NULL,NULL,NULL),(4,'2018-11',3,'2018-11-12 22:58:34','ACTIVE',NULL,NULL,NULL,NULL),(5,'2018-12',3,'2018-11-14 14:48:25','ACTIVE',NULL,NULL,NULL,NULL);
 
 /*Table structure for table `kpi_skill` */
 
@@ -150,16 +150,16 @@ CREATE TABLE `kpi_skill` (
   `skill_id` int(5) NOT NULL AUTO_INCREMENT,
   `skill_category_id` int(5) DEFAULT NULL,
   `skill_description` varchar(20) DEFAULT NULL,
-  `note_html` varchar(100) DEFAULT NULL,
+  `note_html` varchar(250) DEFAULT NULL,
   `note_css` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`skill_id`),
   KEY `FK_kpi_skill` (`skill_category_id`),
   CONSTRAINT `FK_kpi_skill` FOREIGN KEY (`skill_category_id`) REFERENCES `kpi_skill_category` (`skill_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_skill` */
 
-insert  into `kpi_skill`(`skill_id`,`skill_category_id`,`skill_description`,`note_html`,`note_css`) values (1,1,'Networking','required=\"\" ','class=\"mando-field\"'),(2,1,'Windows Server','required=\"\" ','class=\"mando-field\"'),(3,1,'AD AAD','required=\"\" ','class=\"mando-field\"'),(4,1,'Exchange','required=\"\" ','class=\"mando-field\"'),(5,1,'Office 365','required=\"\" ','class=\"mando-field\"'),(6,1,'Azure Bakup DPM','required=\"\" ','class=\"mando-field\"'),(7,1,'zure VM Hyper-V','required=\"\" ','class=\"mando-field\"'),(8,2,'EMS',NULL,NULL),(9,2,'MDOP',NULL,NULL),(10,2,'DLP AIP',NULL,NULL),(11,2,'Win10 Ent',NULL,NULL),(12,2,'Cloud App Security',NULL,NULL),(13,2,'Intune',NULL,NULL),(14,3,'OMS',NULL,NULL),(15,3,'SCCM',NULL,NULL),(16,3,'SCOM',NULL,NULL),(17,4,'Azure Site Recovery ',NULL,NULL),(18,4,'Vnet/VPN/NSG/WAF',NULL,NULL),(19,4,'Automation',NULL,NULL),(20,4,'Azure EA Portal',NULL,NULL),(21,5,'Sophos Security',NULL,NULL),(22,5,'Sophos Firewall',NULL,NULL),(23,5,'CheckPoint Firewall',NULL,NULL),(24,6,'Azure Data Services',NULL,NULL),(25,6,'SharePoint Administr',NULL,NULL),(26,7,'VPC',NULL,NULL),(27,7,'EC2',NULL,NULL),(28,7,'EBS/S3',NULL,NULL);
+insert  into `kpi_skill`(`skill_id`,`skill_category_id`,`skill_description`,`note_html`,`note_css`) values (1,1,'Networking','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(2,1,'Windows Server','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(3,1,'AD AAD','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(4,1,'Exchange','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(5,1,'Office 365','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(6,1,'Azure Bakup DPM','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(7,1,'zure VM Hyper-V','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(8,2,'EMS',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(9,2,'MDOP',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(10,2,'DLP AIP',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(11,2,'Win10 Ent',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(12,2,'Cloud App Security',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(13,2,'Intune',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(14,3,'OMS',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(15,3,'SCCM',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(16,3,'SCOM',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(17,4,'Azure Site Recovery ',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(18,4,'Vnet/VPN/NSG/WAF',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(19,4,'Automation',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(20,4,'Azure EA Portal',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(21,5,'Sophos Security',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(22,5,'Sophos Firewall',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(23,5,'CheckPoint Firewall',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(24,6,'Azure Data Services',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(25,6,'SharePoint Administr',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(26,7,'VPC',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(27,7,'EC2',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(28,7,'EBS/S3',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL);
 
 /*Table structure for table `kpi_skill_category` */
 
@@ -174,6 +174,22 @@ CREATE TABLE `kpi_skill_category` (
 /*Data for the table `kpi_skill_category` */
 
 insert  into `kpi_skill_category`(`skill_category_id`,`skill_category_description`) values (1,'Core Skills'),(2,'Microsoft 365'),(3,'System Center'),(4,'Azure Solutions'),(5,'Security'),(6,'Data SharePoint'),(7,'AWS Cloud');
+
+/*Table structure for table `kpi_skill_copy` */
+
+DROP TABLE IF EXISTS `kpi_skill_copy`;
+
+CREATE TABLE `kpi_skill_copy` (
+  `skill_id` int(5) NOT NULL DEFAULT 0,
+  `skill_category_id` int(5) DEFAULT NULL,
+  `skill_description` varchar(20) DEFAULT NULL,
+  `note_html` varchar(250) DEFAULT NULL,
+  `note_css` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `kpi_skill_copy` */
+
+insert  into `kpi_skill_copy`(`skill_id`,`skill_category_id`,`skill_description`,`note_html`,`note_css`) values (1,1,'Networking','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(2,1,'Windows Server','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(3,1,'AD AAD','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(4,1,'Exchange','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(5,1,'Office 365','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(6,1,'Azure Bakup DPM','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(7,1,'zure VM Hyper-V','required=\"\"  pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\" ','class=\"mando-field\"'),(8,2,'EMS',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(9,2,'MDOP',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(10,2,'DLP AIP',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(11,2,'Win10 Ent',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(12,2,'Cloud App Security',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(13,2,'Intune',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(14,3,'OMS',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(15,3,'SCCM',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(16,3,'SCOM',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(17,4,'Azure Site Recovery ',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(18,4,'Vnet/VPN/NSG/WAF',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(19,4,'Automation',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(20,4,'Azure EA Portal',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(21,5,'Sophos Security',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(22,5,'Sophos Firewall',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(23,5,'CheckPoint Firewall',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(24,6,'Azure Data Services',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(25,6,'SharePoint Administr',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(26,7,'VPC',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(27,7,'EC2',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL),(28,7,'EBS/S3',' pattern=\"^(100)|(200)|(300)|(400)|(500)$\" title=\"values should be 100,200,300,400 or 500\"',NULL);
 
 /*Table structure for table `kpi_skill_level` */
 
@@ -206,11 +222,11 @@ CREATE TABLE `kpi_skill_matrix` (
   UNIQUE KEY `NewIndex1` (`month_year`,`skill_id`,`employee_id`),
   KEY `FK_kpi_skill_matrix` (`skill_id`),
   CONSTRAINT `FK_kpi_skill_matrix` FOREIGN KEY (`skill_id`) REFERENCES `kpi_skill` (`skill_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_skill_matrix` */
 
-insert  into `kpi_skill_matrix`(`id`,`month_year`,`skill_id`,`score`,`employee_id`,`date_created`,`status_code`) values (4,'2018-11',4,40,3,'2018-11-12 16:33:55','ACTIVE'),(5,'2018-11',5,50,3,'2018-11-12 16:33:55','ACTIVE'),(6,'2018-11',6,60,3,'2018-11-12 16:33:55','ACTIVE'),(7,'2018-11',7,70,3,'2018-11-12 16:33:55','ACTIVE'),(8,'2018-12',1,1,3,'2018-11-12 16:35:54','ACTIVE'),(9,'2018-12',2,2,3,'2018-11-12 16:35:54','ACTIVE'),(10,'2018-12',3,2,3,'2018-11-12 16:35:54','ACTIVE'),(11,'2018-12',4,3,3,'2018-11-12 16:35:54','ACTIVE'),(12,'2018-12',5,5,3,'2018-11-12 16:35:54','ACTIVE'),(13,'2018-12',6,6,3,'2018-11-12 16:35:54','ACTIVE'),(14,'2018-12',7,4,3,'2018-11-12 16:35:54','ACTIVE'),(15,'2018-12',8,5,3,'2018-11-12 16:35:54','ACTIVE');
+insert  into `kpi_skill_matrix`(`id`,`month_year`,`skill_id`,`score`,`employee_id`,`date_created`,`status_code`) values (1,'2018-10',7,300,2,'2018-11-14 09:06:18','ACTIVE'),(2,'2018-11',1,200,2,'2018-11-14 09:06:18','ACTIVE'),(3,'2018-11',3,300,1,'2018-11-14 09:06:18','ACTIVE'),(4,'2018-11',4,400,1,'2018-11-14 09:06:18','ACTIVE'),(5,'2018-11',5,500,1,'2018-11-14 09:06:18','ACTIVE'),(6,'2018-11',6,500,1,'2018-11-14 09:06:18','ACTIVE'),(7,'2018-11',7,500,1,'2018-11-14 09:06:18','ACTIVE'),(8,'2018-12',7,500,1,'2018-11-21 11:54:34','ACTIVE');
 
 /*Table structure for table `kpi_user` */
 
@@ -232,11 +248,11 @@ CREATE TABLE `kpi_user` (
   `job_title` varchar(250) DEFAULT NULL,
   `date_of_appointment` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_user` */
 
-insert  into `kpi_user`(`id`,`first_name`,`last_name`,`empno`,`nic`,`pword`,`user_role`,`status_code`,`user_created`,`date_created`,`user_updated`,`date_updated`,`job_title`,`date_of_appointment`) values (1,'Admin','Fernando','1343','863512542V','1343','PM','ACTIVE',1,'2018-10-27 07:35:42',0,NULL,NULL,NULL),(2,'Kumara','Fernando','13434','863512552V','123456','ENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,NULL,NULL),(3,'Samatha','Perera','1122','863512552V','1122','JENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,'Graduate Trainee','04-04-2005'),(4,'Gyan','Perice','1123','863512552V','1123','SMANAGER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,NULL,NULL),(5,'Priyanta','Vidana','1266','863512552V','1266','HIT','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,NULL,NULL),(6,'kumara g','welcgg','115522','863512524v','3fb581dd5ff53aed5c5773123a42c0c5b830631c','ENGINEER','ACTIVE',1,'2018-11-13 16:40:08',0,NULL,NULL,NULL);
+insert  into `kpi_user`(`id`,`first_name`,`last_name`,`empno`,`nic`,`pword`,`user_role`,`status_code`,`user_created`,`date_created`,`user_updated`,`date_updated`,`job_title`,`date_of_appointment`) values (1,'Admin','Fernando','1343','863512542V','3fb581dd5ff53aed5c5773123a42c0c5b830631c','PM','ACTIVE',1,'2018-10-27 07:35:42',0,NULL,NULL,NULL),(2,'Kumara','Fernando','13434','863512552V','3fb581dd5ff53aed5c5773123a42c0c5b830631c','ENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,NULL,NULL),(3,'Samatha','Perera','1122','863512552V','3fb581dd5ff53aed5c5773123a42c0c5b830631c','JENGINEER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,'Graduate Trainee','04-04-2005'),(4,'Gyan','Perice','1123','863512552V','3fb581dd5ff53aed5c5773123a42c0c5b830631c','SMANAGER','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,NULL,NULL),(5,'Priyanta','Vidana','1266','863512552V','3fb581dd5ff53aed5c5773123a42c0c5b830631c','HIT','ACTIVE',1,'2018-10-27 08:08:58',0,NULL,NULL,NULL),(6,'kumara g','welcgg','115522','863512524v','3fb581dd5ff53aed5c5773123a42c0c5b830631c','ENGINEER','ACTIVE',1,'2018-11-13 16:40:08',0,NULL,NULL,NULL),(7,'kumara g','welcgg','115533','863512556v','3fb581dd5ff53aed5c5773123a42c0c5b830631c','TEAMLEAD','ACTIVE',1,'2018-11-13 16:40:08',0,NULL,NULL,NULL);
 
 /*Table structure for table `kpi_user_role` */
 
@@ -269,14 +285,15 @@ CREATE TABLE `kpi_week_plan` (
   `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
   `review_user` int(5) DEFAULT 0,
   `review_date` varchar(50) DEFAULT NULL,
+  `skill_id` int(5) DEFAULT NULL COMMENT 'requesting skill por the person',
   PRIMARY KEY (`id`),
   KEY `FK_kpi_week_plan_user` (`user_created`),
   CONSTRAINT `FK_kpi_week_plan_user` FOREIGN KEY (`user_created`) REFERENCES `kpi_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kpi_week_plan` */
 
-insert  into `kpi_week_plan`(`id`,`plan_date`,`task`,`estimated_duration`,`remark`,`status_code`,`assign_to`,`user_created`,`date_created`,`review_user`,`review_date`) values (1,'2018-10-27','sample task','5','sample remark','ACTIVE',0,1,'2018-10-27 12:26:37',0,NULL),(5,'2018-10-27','sample task','23:21 16:54','sample remark ','DEACTIVE',0,3,'2018-10-27 12:33:52',0,NULL),(6,'2018-10-27','sample task','23:21 16:54','sample remark ','ACTIVE',0,3,'2018-10-27 12:38:35',0,NULL),(7,'2018-10-25','ssss','04:54 TO 04:54','sadasd','ACTIVE',3,4,'2018-10-31 21:30:44',0,NULL),(8,'2018-11-08','sample','12:01 TO 15:04','sample remark','REVIEW',3,4,'2018-11-07 14:44:24',1,'2018-11-08 11:19:31am'),(9,'2018-11-18','sample','23:04 TO 04:04','Remark sample','ACTIVE',3,3,'2018-11-12 12:10:48',0,NULL);
+insert  into `kpi_week_plan`(`id`,`plan_date`,`task`,`estimated_duration`,`remark`,`status_code`,`assign_to`,`user_created`,`date_created`,`review_user`,`review_date`,`skill_id`) values (1,'2018-10-27','sample task','5','sample remark','ACTIVE',1,1,'2018-10-27 12:26:37',0,NULL,NULL),(5,'2018-10-27','sample task','23:21 16:54','sample remark ','DEACTIVE',2,3,'2018-10-27 12:33:52',0,NULL,NULL),(6,'2018-10-27','sample task','23:21 16:54','sample remark ','ACTIVE',4,3,'2018-10-27 12:38:35',0,NULL,NULL),(7,'2018-10-25','ssss','04:54 TO 04:54','sadasd','ACTIVE',3,4,'2018-10-31 21:30:44',0,NULL,NULL),(8,'2018-11-08','sample','12:01 TO 15:04','sample remark','REVIEW',3,4,'2018-11-07 14:44:24',1,'2018-11-08 11:19:31am',NULL),(9,'2018-11-18','sample','23:04 TO 04:04','Remark sample','ACTIVE',3,3,'2018-11-12 12:10:48',0,NULL,NULL),(10,'2018-11-22','server installation','10:11 TO 02:03','ss','PENDING',0,4,'2018-11-18 07:57:19',0,NULL,18),(11,'2018-11-23','sample','12:01 TO 12:01','remark','PENDING',0,4,'2018-11-21 14:00:20',0,NULL,7),(12,'2018-11-29','sample','12:12 TO 12:12','dsdsad','ACTIVE',2,1,'2018-11-21 14:08:45',0,NULL,9);
 
 /*Table structure for table `kpi_week_plan_actual` */
 

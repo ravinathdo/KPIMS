@@ -141,7 +141,7 @@ VALUES ('" . $_POST['plan_date'] . "',
                                 <div class="form-group">
                                     <label for="plan_date" class="control-label col-xs-4">Plan Date</label> 
                                     <div class="col-xs-8">
-                                        <input id="plan_date" name="plan_date" type="date" class="form-control">
+                                        <input id="plan_date" name="plan_date" type="date" class="form-control" min="<?= $_SESSION['today']?>">
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -124,6 +124,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 INNER JOIN kpi_user_role
 ON kpi_user.user_role = kpi_user_role.user_role ";
                                             $dataUser = getData($sqlUser);
+                                            if($dataUser)
                                             foreach ($dataUser as $value) {
                                                 ?>
                                                 <option value="<?= $value['id'] ?>"><?= $value['first_name'] ?> <?= $value['last_name'] ?> [<?= $value['empno'] ?>] <?= $value['user_role'] ?></option>
@@ -169,6 +170,8 @@ WHERE kpi_skill_matrix.month_year = '" . $_POST['month_year'] . "' AND employee_
                                     <tbody>
                                         <?php
                                         $dataSet = getData($sql);
+                                                                                    if($dataSet)
+
                                         foreach ($dataSet as $value) {
                                             ?>
                                             <tr>

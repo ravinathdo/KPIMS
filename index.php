@@ -59,8 +59,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <input type="password" placeholder="Password" required="" name="pword">
                             <i class="fa fa-lock"></i>
                         </div>
-                        <a class="news-letter " href="#">
-                            <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forget Password</label>
+                        <a class="news-letter " href="app.apk">
+                            Download android app here
                         </a>
                     </div>
                     <div class="col-md-6 login-do">
