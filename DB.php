@@ -8,10 +8,17 @@
 
 function getDBConnection() {
 
+    //Production
     $servername = "localhost";
-    $username = "root";
-    $password = "123";
-    $db = "kpimsdb";
+    $username = "metrosta_user";
+    $password = "K123456";
+    $db = "metrosta_kpimsdb";
+    
+    //Development
+//    $servername = "localhost";
+//    $username = "root";
+//    $password = "123";
+//    $db = "kpimsdb";
 
 
 // Create co nnection

@@ -1,10 +1,3 @@
-
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
@@ -43,7 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             $today = date("Y-m-d");
                             $_SESSION['today'] = $today;
                         }
-                        header("Location:home.php");
+                        echo "<script type='text/javascript'>  window.location='home.php'; </script>";
+                       // header("Location:home.php");
                     } else {
                         echo '<p class="bg-danger msg-error">Invalid username or password</p>';
                     }
@@ -59,7 +53,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <input type="password" placeholder="Password" required="" name="pword">
                             <i class="fa fa-lock"></i>
                         </div>
-                        <a class="news-letter " href="app.apk">
+                        <a class="news-letter " href="KPIMS.apk">
                             Download android app here
                         </a>
                     </div>
